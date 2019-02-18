@@ -21,6 +21,7 @@ class Questions extends React.Component {
         const url = this.hostUrl + '/Questions/'
         axios.get(url).then(
             response => {
+                console.log(response)
                 this.setState({
                     questions: [...response.data.data],
                     promise : true,

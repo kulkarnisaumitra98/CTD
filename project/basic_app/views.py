@@ -3,13 +3,13 @@ from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework import permissions
 from .serializers import QuestionSerializers, UserSerializers, SubmissionSerializers
-from .models import UserProfileInfo, Submissions, Questions
+from .models import UserProfileInfo, Submissions, Questions, UserQ
 from django.urls import reverse
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from rest_framework.response import Response
+#from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 
 import datetime
@@ -243,34 +243,22 @@ def questions(request, id=1):
                     rte_flag = True
                     status = "RTE"   # strings to display on console
 
-                if not user.QuestionDetails.all():
-                    q = Questions(questionTitle=Questions.objects.get(id=id).questionTitle, score=0)
-                    q.score = user.score
-                    q.flag = True   # flags to check if sumbitted(required for accuracy)
-                    q.save()
-                    user.QuestionDetails.add(q)
-
-                else:
-                    temp = False
-                    for userque in user.QuestionDetails.all():
-                        if userque.questionTitle == Questions.objects.get(id=id).questionTitle:
-                            temp = True
-
-                    if temp:
-                        if userque.score <= user.score:  # store the mac sccore
-                            userque.score = user.score  # question marks
-                    else:
-                        q = Questions(questionTitle=Questions.objects.get(id=id).questionTitle, score=0)
+                if UserQ.objects.filter(user = request.user, Qid=id):
+                    if UserQ.objects.get(user=request.user, Qid=id).score <= user.score:
+                        q = UserQ.objects.get(user=request.user, Qid=id)
                         q.score = user.score
-                        q.flag = True
                         q.save()
-                        user.QuestionDetails.add(q)
+                        UserQ.objects.get(user=request.user, Qid=id).save()
+                else:
+                    q = UserQ(Qid=id, user=request.user)
+                    q.score = user.score
+                    q.save()
 
                 user.save()
 
                 user.totalScore = 0
-
-                for userque in user.QuestionDetails.all():
+                user1 = User.objects.get(username=request.user.username)
+                for userque in user1.userq_set.all():
                     user.totalScore += userque.score
 
                 user.total = user.totalScore // 6
@@ -331,44 +319,12 @@ def question_panel(request):
         user_sub_count = [0] * 6        # number of users who have atleast one submissions
         percentage_accuracy = [0] * 6   # stores accuracy of each question
 
-        # for user in all_user:
-        #     user_ques = user.QuestionDetails.all()
-        #     if user_ques[0].flag: # if even 1 submission then denominator +1
-        #         user_sub_count[0] += 1
-        #     if user_ques[1].flag:
-        #         user_sub_count[1] += 1
-        #     if user_ques[2].flag:
-        #         user_sub_count[2] += 1
-        #     if user_ques[3].flag:
-        #         user_sub_count[3] += 1
-        #     if user_ques[4].flag:
-        #         user_sub_count[4] += 1
-        #     if user_ques[5].flag:
-        #         user_sub_count[5] += 1
-        #
-        # for user in all_user:
-        #     user_ques = user.QuestionDetails.all()
-        #     if user_ques[0].score == 100:  # if ques score 100 then numerator +1
-        #         accuracy_count[0] += 1
-        #     if user_ques[1].score == 100:
-        #         accuracy_count[1] += 1
-        #     if user_ques[2].score == 100:
-        #         accuracy_count[2] += 1
-        #     if user_ques[3].score == 100:
-        #         accuracy_count[3] += 1
-        #     if user_ques[4].score == 100:
-        #         accuracy_count[4] += 1
-        #     if user_ques[5].score == 100:
-        #         accuracy_count[5] += 1
-
         for user in all_user:
-            j = 0
-            for que in user.QuestionDetails.all():
-                if que.flag:
-                    user_sub_count[j] += 1
-                if que.score == 100:
-                    accuracy_count[j] += 1
-                j += 1
+            for i in range(6):
+                if UserQ.objects.filter(Qid=i+1, user=user.user):
+                    user_sub_count[i] += 1
+                    if UserQ.objects.get(Qid=i+1, user=user.user).score == 100:
+                        accuracy_count[i] += 1
 
         for i in range(0, 6):
             try:
@@ -377,7 +333,6 @@ def question_panel(request):
                 percentage_accuracy[i] = 0  # since for the first get request no submissions so 0/0 error
 
         all_question = Questions.objects.all()
-        all_question = all_question[0:6]
 
         a1 = 0
 
@@ -387,34 +342,6 @@ def question_panel(request):
             i.save()    # save the accuracy
 
         serializer = QuestionSerializers(all_question, many=True)
-
-        subs = []
-        qtitle = []
-
-        # for i in range(0, 6):
-        #     subs.append(all_question[i].submission)
-        #     qtitle.append(all_question[i].questionTitle)
-        #
-        # dict = {
-        #         't': timer(),
-        #         'a0': percentage_accuracy[0],
-        #         'a1': percentage_accuracy[1],
-        #         'a2': percentage_accuracy[2],
-        #         'a3': percentage_accuracy[3],
-        #         'a4': percentage_accuracy[4],
-        #         'a5': percentage_accuracy[5],
-        #         'subs0': subs[0],
-        #         'subs1': subs[1],
-        #         'subs2': subs[2],
-        #         'subs3': subs[3],
-        #         'subs4': subs[4],
-        #         'subs5': subs[5],
-        #         'qtitle0': qtitle[0],
-        #         'qtitle1': qtitle[1],
-        #         'qtitle2': qtitle[2],
-        #         'qtitle3': qtitle[3],
-        #         'qtitle4': qtitle[4],
-        #         'qtitle5': qtitle[5]}
 
         data = JSONRenderer().render(serializer.data).decode('utf-8')
         data = json.loads(data)
@@ -428,20 +355,15 @@ def question_panel(request):
 def leader(request):
     if request.user.is_authenticated:
             a = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
-            b = a.reverse()
 
             users = [
             ]
 
-            i = 0
-
-            for user in b:
+            for user in a:
                 templist = [0] * 6
-                for q in user.QuestionDetails.all():
-                    for que in Questions.objects.all()[0:6]:
-                        if q.questionTitle == que.questionTitle:
-                            pk = que.id
-                            templist[pk - 1] = q.score
+                for i in range(6):
+                    if UserQ.objects.filter(Qid=i + 1, user=user.user):
+                        templist[i] = UserQ.objects.get(Qid=i + 1, user=user.user).score
 
                 users.append({
                     'username' : user.user.username,

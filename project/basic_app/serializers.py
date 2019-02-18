@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Questions, UserProfileInfo, Submissions
+from .models import Questions, UserProfileInfo, Submissions, UserQ
 
 
 class QuestionSerializers(serializers.ModelSerializer):
@@ -17,6 +17,11 @@ class UserSerializers(serializers.ModelSerializer):
 class SubmissionSerializers(serializers.ModelSerializer):
     class Meta:
         model = Submissions
+        fields = '__all__'
+
+class UserQueSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = UserQ
         fields = '__all__'
 
 
