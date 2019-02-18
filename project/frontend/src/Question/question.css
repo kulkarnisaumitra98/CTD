@@ -1,0 +1,165 @@
+.navigation{
+    height:7vh;
+    width: 100%;
+    border: 0px solid black;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    
+}
+.headhere{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vh;
+  border: 0px solid green;
+  margin-left: 10vw;
+}
+.butbox{
+  margin-left: 30vw;
+}
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5.5vh;
+  border: 7px solid green;
+  margin-left: 3vw;
+}
+.but2{
+  height: 4.5vh;
+  width: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.queshub{
+    border: 0px solid green;
+    height:86vh;
+    width:100%;
+  }
+  
+   .part1 {
+      height: 43vh;
+      width: 100%;
+      border: 0px solid blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .part2 {
+  
+      height: 43vh;
+      width: 100%;
+      border: 0px solid blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .flip-card {
+  
+      background-color: transparent;
+      perspective: 1000px;
+      width:20%;
+      border:0px solid green;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 80%;
+      height: 28vh;
+      text-align: center;
+      transition: transform 0.3s;
+      transform-style: preserve-3d;
+      /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    }
+    .flip-card-front {
+      height: 28vh;
+      width: 100%;
+      border: 0px solid red;
+      background-color: #bbb;
+      box-shadow: 9px 9px black;
+      color: black;
+      z-index: 2;
+    }
+    .question {
+      height: 28vh;
+      border: 1px solid green;
+    }
+    
+    .qno {
+      width: 100%;
+      height:7vh;
+      border: 1px solid green;
+    }
+    
+    .title {
+      width: 100%;
+      height: 7vh;
+      border: 1px solid green;
+    }
+  
+    .attempts {
+      width: 100%;
+      height: 14vh;
+      border: 1px solid green;
+    }
+  
+    .flip-card-back {
+      height: 28vh;
+      border: 1px solid black;
+      backface-visibility: hidden;
+      background-color: #bbb;
+      color: white;
+      transform: rotateY(180deg);
+      z-index: 1;
+    }
+    .accuracy {
+      height: 11vh;
+      width: 100%;
+      border: 1px solid black;
+    }
+  
+    .try {
+      height: 10vh;
+      width: 100%;
+      border: 1px solid green;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(-180deg);
+      -webkit-transform: rotateY(-180deg);
+    }
+  
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 30vh;
+      height: 28vh;
+      backface-visibility: hidden;
+    }
+  
+    .Q1 {
+      margin-left: -4vw;
+    }
+    .Q2 {
+      margin-left: 9vw;
+    }
+    .Q3 {
+      margin-left:9vw;
+    }
+    .Q4 {
+      margin-left: 11vw;
+    }
+    .Q5 {
+      margin-left: 8vw;
+    }
+    .Q6 {
+    
+      margin-left: 8vw;
+    }
+    

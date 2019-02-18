@@ -1,0 +1,150 @@
+.navig{
+    height:7vh;
+    width: 100%;
+    border: 0px solid black;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    
+}
+.bigbody{
+   
+    display: flex;
+    border: 0px solid green;
+    height:86vh;
+    width:100%;
+}
+.BodY{
+    border: 0px solid red;
+    height:86vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.insideBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 90vw;
+    height: 12vh;
+}
+
+#editor {
+    height:56vh;
+    width: 53vw;
+    font-size: 2vh;
+}
+.text{
+    margin-right: 5vw;
+    padding-left:3vh;
+    padding-top: 0vh;
+    height:56vh;
+    width: 36vw;
+    background-color:black; 
+    color:white;
+    resize: none;
+    border:none;
+}
+
+.insidecenterbody{
+    border: 0px solid purple;
+    height:55vh;
+}
+.score{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 7vw;
+    height: 7vh;
+    font-size: 2.5vh;
+}
+.scoreval{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 12vw;
+    height: 7vh;
+    
+}
+
+.choose{
+    margin-left:20vw;
+    width: 30vw;
+    border: none;
+}
+
+.radiobox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9vh;
+    width: 3vw;
+    border: 1px solid black;
+}
+.Cbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9vh;
+    width: 7vw;
+    border: 1px solid black;
+}
+.submitbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9vh;
+    width: 14vw;
+    border: 1px solid black;
+    margin-left:11vw;
+}
+.submit{
+    height: 7vh;
+    width:9vw;
+}
+.loadbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9vh;
+    width: 14vw;
+    border: 1px solid black;
+    margin-left:20vw;
+}
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    border: 0px solid green;
+    margin-left: 10vw;
+}
+.bigbuttonbox{
+    margin-left: 15vw;
+}
+.buttonbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.5vh;
+    border: 0px solid green;
+    margin-left: 3vw;
+}
+.but1{
+    height: 4.5vh;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.foot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+}

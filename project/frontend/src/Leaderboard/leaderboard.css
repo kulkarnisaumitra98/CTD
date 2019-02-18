@@ -1,0 +1,97 @@
+.navig{
+    height:7vh;
+    width: 100%;
+    border: 0px solid black;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;   
+}
+
+.leader{
+  
+    color: white;
+    border: 0px solid green;
+    height:86vh;
+    width:100%;
+  }
+  .a{
+    height: 86vh;
+    border: solid 0px red;
+  }
+  .Leaderbox{
+      height: 10vh;
+      width: 100%;
+      border: 0px solid green;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+  }
+  .heading {
+    height: 8vh;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    width: 30vw;
+    border: 0px solid red;
+  }
+  .LeaderLeaderbox{
+    height: 76vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    border: 0px solid green;
+  }
+  .Leaderboard{
+    height: 76vh;
+    width: 100%;
+    justify-content: center;
+    border: 0px solid black;
+  } 
+  .tableup {
+    background: rgba(0, 0, 0, 0.4);
+    width: 90%;
+    height: 5vh;
+    margin-left: 5vw;
+    color: white;
+  }
+  .tabledown {
+    background: rgba(0, 0, 0, 0.4);
+    width: 90%;
+    height: 5vh;
+    margin-left: 5vw;
+    overflow: auto;
+    color: white;
+          
+  }
+  .leadertable{
+    height: 60vh;
+    overflow-y: auto;
+
+  }
+  .leadertable::-webkit-scrollbar{
+      display: none;
+  }
+  th,
+  td {
+    height: 10vh;
+  }
+  .rank {
+    width: 10vw;
+  }
+  .team {
+    width: 30vw;
+  }
+  .ques {
+    width: 8vw;
+  }
+  .total {
+    width: 10vw;
+  }
+  .theadline{
+  
+  }
+  .line1{
+      border-bottom: 1px solid white;   
+  }
+ 

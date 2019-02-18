@@ -1,0 +1,126 @@
+.navig{
+    height:7vh;
+    width: 100%;
+    border: 0px solid black;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;   
+}
+
+.leader{
+  
+    color: white;
+    border: 0px solid green;
+    height:86vh;
+    width:100%;
+  }
+  .a{
+    height: 86vh;
+    border: solid 0px red;
+  }
+  .subbox{
+      height: 10vh;
+      width: 100%;
+      border: 0px solid green;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+  }
+  .heading {
+    height: 8vh;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid red;
+  }
+  .SubSubbox{
+    height: 76vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    border: 0px solid green;
+  }
+  .Submission{
+    height: 76vh;
+    width: 100%;
+    justify-content: center;
+    border: 0px solid black;
+  } 
+  .tableup {
+    background: rgba(0, 0, 0, 0.575);
+    width: 90%;
+    height: 5vh;
+    margin-left: 5vw;
+    color: white;
+  }
+  .tabledown {
+    background: rgba(0, 0, 0, 0.4);
+    width: 90%;
+    height: 5vh;
+    margin-left: 5vw;
+    overflow: auto;
+    color: white;
+          
+  }
+  .leadertable{
+    height: 60vh;
+    overflow-y: auto;
+
+  }
+  .leadertable::-webkit-scrollbar{
+      display: none;
+  }
+  th,
+  td {
+    height: 10vh;
+  }
+  .rank {
+    justify-content: center;
+    border:0px solid black;
+    width:15vw;
+    padding-left: 6.5vw;
+    
+  }
+  .time {
+    border:0px solid black;
+    width:20vw;
+    padding-left: 9.5vw;
+  }
+  .status {
+    border:0px solid black;
+    width:20vw;
+    padding-left: 9vw;
+
+  }
+  .sr{
+    justify-content: center;
+    border:0px solid black;
+    width:15vw;
+    padding-left: 8vw;  
+  }
+  .prog{
+    border:0px solid black;
+    width:20vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+  .butty {
+    border:0px solid black;
+    width:20vw;
+    padding-left: 7vw;
+
+  }
+  .line1{
+      border-bottom: 1px solid rgb(204, 204, 204);   
+  }
+  .butbut{
+    height: 5vh;
+    width: 9vw;
+
+  }
+ 
