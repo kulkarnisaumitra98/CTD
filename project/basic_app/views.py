@@ -63,9 +63,9 @@ path2 = 'data/standard'
 path3 = 'data/standard/testcaseScore'
 
 
-def start_Timer(request):
+def startTimer(request):
     if request.method == 'GET':
-        return render(request, 'basic_app/timer.html')  # timer url known only to us
+        return render(request, 'frontend/timer.html')  # timer url known only to us
     else:
         adminpassword = '1'
         _password = request.POST.get('pass1')   # get admin password
@@ -77,13 +77,13 @@ def start_Timer(request):
             hour1 = now1.hour
             time1 = str(hour1) + ':' + str(min1)    # makes the string of current time + 1 min
 
-            time = now1.second+now1.minute*60+now1.hour*60*60
+            time = now1.second+now1.minute * 60 + now1.hour * 60 * 60
             global endtime
             global starttime
             starttime = time1
             endtime = time + 7200   # 7200 defines our event time
 
-            return HttpResponse("Timer set go")
+            return HttpResponse('<p>Good to go</p>')
         else:
             return HttpResponse("Invalid login details supplied.")
 
@@ -120,11 +120,19 @@ def waiting(request):
     return render(request, 'frontend/index.html', {})
 
 
-def timer():
+def timer(request):
     now = datetime.datetime.now()
     time = now.second + now.minute * 60 + now.hour * 60 * 60
     global endtime  # defined once when timer was hit
-    return endtime-time
+    return JsonResponse({'time': endtime-time})
+
+
+def nowTime():
+    now = datetime.datetime.now()
+    time = now.second + now.minute * 60 + now.hour * 60 * 60
+    global endtime  # defined once when timer was hit
+
+    return endtime - time
 
 
 def questions(request, id=1):
@@ -137,7 +145,7 @@ def questions(request, id=1):
             some_text = Postobject['questionField']  # code to store in submission instance
             subb = Submissions(user=request.user, que=Questions.objects.get(pk=id))
             subb.sub = some_text
-            time = timer()
+            time = nowTime()
             hour = time // (60 * 60)
             a = time % (60 * 60)
             if a < 60:
@@ -291,7 +299,7 @@ def questions(request, id=1):
                 user.save()
 
                 dictt = {'e':cerror,
-                         't':timer(),
+                         't':nowTime(),
                          'testlist':testlist,
                          'status':status,
                          'score': user.score}
@@ -305,49 +313,53 @@ def questions(request, id=1):
 
 def question_panel(request):
     if request.user.is_authenticated:
-        try:
-            user = UserProfileInfo.objects.get(user=request.user)
-        except UserProfileInfo.DoesNotExist:
-            return render(request, 'frontend/index.html')
-
-        user.flag = True    # once reaches question_panel do not enable user to go back
-        user.save()
-
-        all_user = UserProfileInfo.objects.all()
-
-        accuracy_count = [0] * 6        # number of users who have 100 score for each 6 questions
-        user_sub_count = [0] * 6        # number of users who have atleast one submissions
-        percentage_accuracy = [0] * 6   # stores accuracy of each question
-
-        for user in all_user:
-            for i in range(6):
-                if UserQ.objects.filter(Qid=i+1, user=user.user):
-                    user_sub_count[i] += 1
-                    if UserQ.objects.get(Qid=i+1, user=user.user).score == 100:
-                        accuracy_count[i] += 1
-
-        for i in range(0, 6):
+        if request.is_ajax():
             try:
-                percentage_accuracy[i] = int((accuracy_count[i] / user_sub_count[i]) * 100)
-            except ZeroDivisionError:
-                percentage_accuracy[i] = 0  # since for the first get request no submissions so 0/0 error
+                user = UserProfileInfo.objects.get(user=request.user)
+            except UserProfileInfo.DoesNotExist:
+                return render(request, 'frontend/index.html')
 
-        all_question = Questions.objects.all()
+            user.flag = True    # once reaches question_panel do not enable user to go back
+            user.save()
 
-        a1 = 0
+            all_user = UserProfileInfo.objects.all()
 
-        for i in all_question:
-            i.accuracy = percentage_accuracy[a1]
-            a1 += 1
-            i.save()    # save the accuracy
+            accuracy_count = [0] * 6        # number of users who have 100 score for each 6 questions
+            user_sub_count = [0] * 6        # number of users who have atleast one submissions
+            percentage_accuracy = [0] * 6   # stores accuracy of each question
 
-        serializer = QuestionSerializers(all_question, many=True)
+            for user in all_user:
+                for i in range(6):
+                    if UserQ.objects.filter(Qid=i+1, user=user.user):
+                        user_sub_count[i] += 1
+                        if UserQ.objects.get(Qid=i+1, user=user.user).score == 100:
+                            accuracy_count[i] += 1
 
-        data = JSONRenderer().render(serializer.data).decode('utf-8')
-        data = json.loads(data)
-        data = {'data': data}
+            for i in range(0, 6):
+                try:
+                    percentage_accuracy[i] = int((accuracy_count[i] / user_sub_count[i]) * 100)
+                except ZeroDivisionError:
+                    percentage_accuracy[i] = 0  # since for the first get request no submissions so 0/0 error
 
-        return JsonResponse(data)
+            all_question = Questions.objects.all()
+
+            a1 = 0
+
+            for i in all_question:
+                i.accuracy = percentage_accuracy[a1]
+                a1 += 1
+                i.save()    # save the accuracy
+
+            serializer = QuestionSerializers(all_question, many=True)
+
+            data = JSONRenderer().render(serializer.data).decode('utf-8')
+            data = json.loads(data)
+            data = {'data': data}
+
+            return JsonResponse(data)
+
+        else:
+            return render(request, 'frontend/index.html')
     else:
         return render(request, 'frontend/index.html')
 
@@ -487,7 +499,7 @@ def retry(request, id=1):
         f = idd[int(id)-1]
         q = var[int(f)-1]   # extract question from the url id
         question = q.questions  # text of the question
-        dict = {'sub': array[int(id)-1], 'question': question, 's': user.score, 't': timer()}
+        dict = {'sub': array[int(id)-1], 'question': question, 's': user.score, 't': nowTime()}
 
         return render(request, 'basic_app/Codingg.html', context=dict)
     if request.method == "POST":

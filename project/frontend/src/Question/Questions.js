@@ -19,9 +19,9 @@ class Questions extends React.Component {
 
     componentDidMount() {
         const url = this.hostUrl + '/Questions/'
-        axios.get(url).then(
+        axios.get(url,{headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
-                console.log(response)
+                //console.log(response)
                 this.setState({
                     questions: [...response.data.data],
                     promise : true,

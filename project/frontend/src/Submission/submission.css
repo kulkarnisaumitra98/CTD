@@ -8,14 +8,14 @@
     align-items: center;   
 }
 
-.leader{
+.submiss{
   
     color: white;
     border: 0px solid green;
     height:86vh;
     width:100%;
   }
-  .a{
+  .ab{
     height: 86vh;
     border: solid 0px red;
   }
@@ -28,7 +28,7 @@
       align-items: center;
 
   }
-  .heading {
+  .headingsub {
     height: 8vh;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
@@ -37,6 +37,9 @@
     justify-content: center;
     align-items: center;
     border: 0px solid red;
+    border-radius: 100px;
+    color: rgb(214, 236, 236);
+
   }
   .SubSubbox{
     height: 76vh;
@@ -56,7 +59,9 @@
     width: 90%;
     height: 5vh;
     margin-left: 5vw;
-    color: white;
+    color: rgba(185, 223, 223, 0.911);
+    border-radius:3vh;
+    font-size: 2.6vh;
   }
   .tabledown {
     background: rgba(0, 0, 0, 0.4);
@@ -64,17 +69,60 @@
     height: 5vh;
     margin-left: 5vw;
     overflow: auto;
-    color: white;
+    color: rgb(224, 224, 224);
+    border-radius:2vh;
+
           
   }
-  .leadertable{
+  .submisstable{
     height: 60vh;
     overflow-y: auto;
 
   }
-  .leadertable::-webkit-scrollbar{
-      display: none;
+  .submisstable::-webkit-scrollbar{
+      display: none !important;
   }
+  .butbox{
+    margin-left: 30.3vw;
+  }
+  .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.5vh;
+    border: 0px solid green;
+    margin-left: 3vw;
+  }
+  .butbut{
+    height: 5vh;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(1, 105, 105);
+    color: white;
+    border: 1px solid black;
+    box-shadow: 2px 2px black;;
+    border-radius: 5px; 
+  }
+  .butbut:hover{
+    padding-left: 1px;
+  }
+  .butbut:after{
+      content: '»';
+      color: white;
+      position: absolute;
+      opacity: 0;  
+      padding-left: 8vh;
+      padding-bottom: 0.5vh;
+      transition: 0.5s;
+      font-size: 2.5vh;
+  }
+  .butbut:hover:after{
+    opacity: 1;
+    
+  }
+  
   th,
   td {
     height: 10vh;
@@ -84,17 +132,31 @@
     border:0px solid black;
     width:15vw;
     padding-left: 6.5vw;
+    font-size:3vh;
+    font-weight: 400;
     
   }
-  .time {
+  .timeSub {
     border:0px solid black;
     width:20vw;
     padding-left: 9.5vw;
+    font-size: 3vh;
+    font-weight: 400;
+  }
+  .timeSubd {
+    border:0px solid black;
+    width:20vw;
+    padding-left: 9.5vw;
+    font-size: 2.3vh;
+    font-weight: 400;
   }
   .status {
     border:0px solid black;
     width:20vw;
     padding-left: 9vw;
+    font-size: 3vh;
+    font-weight: 400;
+
 
   }
   .sr{
@@ -102,6 +164,26 @@
     border:0px solid black;
     width:15vw;
     padding-left: 8vw;  
+    font-size: 2.7vh;
+    font-weight: 400;
+
+  }
+  
+  .butty {
+    border:0px solid black;
+    width:20vw;
+    padding-left: 7vw;
+
+  }
+  .borderline{
+      border-bottom: 1px solid rgb(204, 204, 204);  
+      width:10%;
+      
+  }
+  .butbut{
+    height: 6vh;
+    width: 9vw;
+
   }
   .prog{
     border:0px solid black;
@@ -109,18 +191,15 @@
     padding-left: 5vw;
     padding-right: 5vw;
   }
-  .butty {
-    border:0px solid black;
-    width:20vw;
-    padding-left: 7vw;
+  .progress{
+    height: 3.7vh;
+    border:2px solid black;
+    border-radius: 51px;
 
   }
-  .line1{
-      border-bottom: 1px solid rgb(204, 204, 204);   
-  }
-  .butbut{
-    height: 5vh;
-    width: 9vw;
-
+  .progress-bar-success{
+    background-color: rgb(34, 180, 180);
   }
  
+
+  /* borderline */

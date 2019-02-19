@@ -31,9 +31,9 @@ class Submission extends React.Component {
         const url = this.hostUrl + '/Submissions/' + this.props.match.params.pk
         axios.get(url).then(
             response => {
-                console.log(response.data.data)
+                //console.log(response.data.data)
                 const list = [...response.data.data].reverse()
-                console.log(list)
+                //console.log(list)
 
                 this.setState({
                     user: list
@@ -48,10 +48,10 @@ class Submission extends React.Component {
         return (
             <div>
                 <NavSub />
-                <section className="container-fluid leader">
-                    <div className="a">
+                <section className="container-fluid submiss">
+                    <div className="ab">
                         <div className="subbox">
-                            <div className="heading text-center">
+                            <div className="headingsub text-center">
                                 <h3>SUBMISSION</h3>
                             </div>
                         </div>
@@ -60,22 +60,22 @@ class Submission extends React.Component {
                             <div className="Submission">
                                 <table className="tableup">
                                     <tbody>
-                                        <tr className="line1">
+                                        <tr className="borderline">
                                             <th className="rank">SR NO.</th>
-                                            <th className="time">TIME</th>
+                                            <th className="timeSub">TIME</th>
                                             <th className="status">STATUS</th>
                                             <th className="status"></th>
                                         </tr>
                                     </tbody>
                                 </table>
 
-                                <div className="leadertable">
+                                <div className="submisstable">
                                     <table className="tabledown table-striped">
                                         <tbody>
                                             {this.state.user.map((user, index) => (
-                                                <tr className="line1" key={index}>
+                                                <tr className="borderline" key={index}>
                                                     <td className="sr">{index + 1}</td>
-                                                    <td className="time">{user.subtime}</td>
+                                                    <td className="timeSubd">{user.subtime}</td>
                                                     <td className="prog">
                                                         <div className="progress">
                                                             <div 
@@ -89,7 +89,7 @@ class Submission extends React.Component {
                                                             </div>
                                                             </div>
                                                         </td>
-                                                    <td className="butty"><button onClick={() => this.onClickHandler(index)} className="btn butbut">VIEW</button></td>
+                                                    <td className="butty"><button className='btn butbut' onClick={() => this.onClickHandler(index)} >VIEW</button></td>
 
                                                 </tr>
                                             )

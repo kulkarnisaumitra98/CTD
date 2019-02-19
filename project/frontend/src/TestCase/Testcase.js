@@ -16,14 +16,7 @@ const TestCaseBox = styled.div`
     margin-left:2vw;
 `;
 
-const InsideTest = styled.div`
-    width:100%;
-    height:12.5vh;
-    border:2px solid black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-`;
+
 
 class Testcase extends React.Component {
     constructor(props) {
@@ -54,12 +47,12 @@ class Testcase extends React.Component {
 
         return (
             <TestCaseBox>
-                <InsideTest>
+                <div className="InsideTest">
                     Test Case {this.props.id}:
-                </InsideTest>
-                <InsideTest>
+                </div>
+                <div className="BelowInsideTest">
                     {text}
-                </InsideTest>
+                </div>
             </TestCaseBox>
         )
     }

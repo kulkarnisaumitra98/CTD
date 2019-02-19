@@ -10,14 +10,15 @@ const question = (props) => {
         )
 
     return (
-        < div className={"flip-card Q" + props.id} >
+    <NavLink to={'/Coding/' + props.id} style={{textDecoration:"none"}}>
+        <div className={"flip-card Q" + props.id} >
             <div className="flip-card-inner">
                 <div className="flip-card-front">
                     <div className="question">
                         <div className="qno">
-                            {props.id}
+
                         </div>
-                        <div className="title">
+                        <div className="qhead">
                             {question.questionTitle}
                         </div>
 
@@ -27,16 +28,14 @@ const question = (props) => {
                     </div>
                 </div>
 
-                <div className="flip-card-back">
-                    <div className="title">
-                        {question.questionTitle}
-                    </div>
+
+
                     <div className="accuracy">
                         <div className="progress">
                             <div
                                 className="progress-bar progress-bar-success"
                                 role="progressbar"
-                                aria-valuenow="40"
+                                aria-valuenow="60"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
                                 style={{ width: question.accuracy + "%" }}
@@ -44,16 +43,15 @@ const question = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="try">
-                        <NavLink to={'/Coding/' + props.id}> <button className="btn but1">Try it</button></NavLink>
-                    </div>
 
 
                 </div>
 
 
             </div>
-        </div >
+
+
+        </NavLink>
     )
 }
 

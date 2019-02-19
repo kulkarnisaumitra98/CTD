@@ -1,0 +1,125 @@
+.navig{
+    height:7vh;
+    width: 100%;
+    border: 0px solid black;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    
+}
+.Console{
+    height:64vh;
+    width:30vw;
+    border:2px solid rgba(29, 141, 141, 0.788);
+    border-radius: 10px;
+    padding-left:4vh;
+    padding-top:4vh;
+    padding-right:4vh;
+    margin-left:4.5vw;
+    background-color:black;
+    color:rgba(255, 255, 255, 0.685);
+    overflow-y:auto;
+}
+
+.Console::-webkit-scrollbar{
+    display: none;
+}
+.InsideTest{
+    width:100%;
+    height:8.5vh;
+    border:1px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:5px;
+    font-size:2.5vh;
+    color:rgba(255, 255, 255, 0.829);
+    font-weight:500;
+    box-shadow: 0 0 0px 2px black;
+    background-color: rgba(16, 51, 51, 0.637);
+}
+
+.BelowInsideTest{
+
+    margin-top: 0.2vh;
+    width:100%;
+    height:12.5vh;
+    border:1px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:5px;
+    font-size:2.5vh;
+    color:black;
+    font-weight:500;
+    box-shadow: 0 0 0px 2px black;
+    background-color: rgba(206, 248, 248, 0.637);
+}
+
+.ScoreBox{
+    height:8vh;
+    width:23%;
+    border:2px solid black;
+    margin-right:3vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:3vh;
+    color:white;
+    border-radius:5px;
+    box-shadow: inset 1px 1px 5px 0px black;
+
+}
+.StatusBox{
+    height:8vh;
+    width:23%;
+    border:2px solid black;
+    margin-right:3vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:3vh;
+    color:rgb(21, 240, 105);
+    border-radius:5px;
+    box-shadow: inset 1px 1px 5px 0px black;
+
+}
+.bigtestbox{
+    margin-left: 25.25vw;
+}
+.buttonbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.5vh;
+    border: 0px solid green;
+    margin-left: 3vw;
+}
+.buttest{
+    margin-left:3vw; 
+    height: 6vh;
+    width: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(1, 105, 105);
+    color: rgb(240, 230, 230);
+    border: 2px solid black;
+    box-shadow: 2px 2px black;
+    border-radius: 8px;
+    font-size:2.3vh;    
+}
+.btn:focus{
+    /* transform: translateY(2px); */
+    outline:0 !important;
+    box-shadow: 3px 3px black;    
+
+}
+
+.foot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+}

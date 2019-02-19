@@ -6,19 +6,26 @@ import AppQuestion from './Question/AppQuestion'
 import Waiting from './Waiting Page/waiting'
 import AppCoding from './CodingPage/AppCoding';
 import Submission from './Submission/Submission'
+import Timer from './Timer'
+import axios from 'axios'
 
 class App extends React.Component {
-    render() {
+    constructor(props) {
+        super(props)
+        //console.log("I am in App")
+    }
+
+    render() { 
         return (
             <BrowserRouter>
                 <div >
                     <Switch>
-                        <Route exact path='/Questions' component={AppQuestion} />
                         <Route exact path='/instruction' component={Main}/>
                         <Route exact path='/' component={Waiting}/>
-                        <Route exact path='/Submissions/:pk' component={Submission}/>
                         <Route path='/player/' component={Register}/>
-                        <Route path='/Coding/' component={AppCoding}/>
+                        <Route path='/' component={AppQuestion} />
+                        {/* <Route exact path='/Submissions/:pk' component={Submission}/> */}
+                        {/* <Route path='/Coding/' component={AppCoding}/> */}
                     </Switch>
                 </div>
             </BrowserRouter>

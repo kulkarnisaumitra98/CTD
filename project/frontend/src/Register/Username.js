@@ -23,7 +23,7 @@ class Username extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.level)
+        //console.log(this.state.level)
     }
 
     setInput = (event) => {

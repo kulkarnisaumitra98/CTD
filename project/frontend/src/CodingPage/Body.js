@@ -10,7 +10,7 @@ class Body extends React.Component {
     constructor(props) {
         super(props)
 
-        console.log('Inside constructor\n', this.props)
+        //console.log('Inside constructor\n', this.props)
 
         this.hostUrl = 'http://' + window.location.host
     }
@@ -134,7 +134,7 @@ class Body extends React.Component {
 
                     <div className="row BodY">
                         <div className="insideBody mt-3">
-                            <div className="score">SCORE</div>
+                            <div className="scorekey">SCORE</div>
                             <div className="scoreval "></div>
 
                             <div className="custom-file choose" >
@@ -153,7 +153,7 @@ class Body extends React.Component {
                             </div>
 
                         </div>
-                        <div className="insideBody mt-3 row">
+                        <div className="insideBodydown mt-3 row">
                             <div
                                 className="radiobox">
                                 <input

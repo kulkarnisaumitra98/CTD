@@ -26,11 +26,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: 1.1px solid black;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 0px #000000;
     width: 90vw;
     height: 12vh;
 }
-
+.insideBodydown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 12vh;
+}
 #editor {
     height:56vh;
     width: 53vw;
@@ -39,40 +47,51 @@
 .text{
     margin-right: 5vw;
     padding-left:3vh;
-    padding-top: 0vh;
+    padding-top: 3vh;
+    /* padding-right: 3vh; */
     height:56vh;
-    width: 36vw;
+    width:36vw;
     background-color:black; 
-    color:white;
+    color:rgb(226, 225, 225);
     resize: none;
     border:none;
+    border-radius: 8px;
 }
 
 .insidecenterbody{
     border: 0px solid purple;
     height:55vh;
 }
-.score{
+.scorekey{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: 0px solid black;
     width: 7vw;
     height: 7vh;
-    font-size: 2.5vh;
+    font-size: 3vh;
+    color: white;
 }
 .scoreval{
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    width: 12vw;
+    box-shadow: 0.5px 0.5px 4px 0.6px inset black;
+    /* this is for alt1 */
+    /* background-color: rgb(192, 206, 212); */ 
+    /* this is for blacky.jpg */
+    background-color: #e5f8fa; 
+    width: 13vw;
     height: 7vh;
+    font-size: 3vh;
+    font-weight: bolder;
+    
     
 }
 
 .choose{
-    margin-left:20vw;
+    margin-left:22vw;
     width: 30vw;
     border: none;
 }
@@ -84,6 +103,10 @@
     height: 9vh;
     width: 3vw;
     border: 1px solid black;
+    margin-left: 2vh;
+    background: linear-gradient(90deg, rgb(28, 39, 32), rgb(9, 12, 10));
+    box-shadow: 1px 1px 1px 1.6px black;
+    border-radius: 10px;
 }
 .Cbox{
     display: flex;
@@ -92,6 +115,12 @@
     height: 9vh;
     width: 7vw;
     border: 1px solid black;
+    color: black;
+    font-size: 3.5vh;
+    background-color: #e5f8fa;
+    border-radius: 7px;
+    box-shadow: inset -1px -2px 2px 0px black;
+
 }
 .submitbox{
     display: flex;
@@ -99,12 +128,23 @@
     align-items: center;
     height: 9vh;
     width: 14vw;
-    border: 1px solid black;
+    border: 0px solid black;
     margin-left:11vw;
 }
 .submit{
-    height: 7vh;
-    width:9vw;
+    height: 6.8vh;
+    width:12vw;
+    background-color: teal;
+    border: none;
+    color: white;
+    font-size: 2.4vh;
+    border:solid 1px black;
+    box-shadow: 1px 2px 2px 1px black;
+}
+.submit:hover{
+    font-size: 2.5vh;
+    text-shadow: 1px 1px black;
+
 }
 .loadbox{
     display: flex;
@@ -112,7 +152,7 @@
     align-items: center;
     height: 9vh;
     width: 14vw;
-    border: 1px solid black;
+    border: 0px solid black;
     margin-left:20vw;
 }
 .head{
@@ -123,8 +163,8 @@
     border: 0px solid green;
     margin-left: 10vw;
 }
-.bigbuttonbox{
-    margin-left: 15vw;
+.movbutleft{
+    margin-left:16.5vw;
 }
 .buttonbox{
     display: flex;
@@ -132,15 +172,19 @@
     align-items: center;
     height: 5.5vh;
     border: 0px solid green;
-    margin-left: 3vw;
 }
 .but1{
-    height: 4.5vh;
+    height: 5vh;
     width: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    background-color: rgb(1, 105, 105);
+    color: white;
+    border: 1px solid black;
+    box-shadow: 2px 2px black;;
+    border-radius: 5px; 
+    
 }
 .foot{
     display: flex;

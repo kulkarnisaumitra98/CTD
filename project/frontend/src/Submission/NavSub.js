@@ -1,8 +1,6 @@
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
-
-// import Logout from '../CodingPage/Logout';
-
+import LogOut from '../Log Out/LogOut';
 
 const Navbar = () => {
 
@@ -12,15 +10,14 @@ const Navbar = () => {
                 <div className="headhere">SUBMISSION</div>
                 <div className="row butbox">
                     <div className="box">
-                        <NavLink to="/Questions"> <button className="but2">QUESTION HUB</button></NavLink>
+                        <NavLink to="/Questions"> <button className="btn but2">QUESTION HUB</button></NavLink>
                     </div>
                     <div className="box">
-                        <NavLink to="/Leaderboard"> <button className="but2">LEADERBOARD</button></NavLink>
+                        <NavLink to="/Leaderboard"> <button className="btn but2">LEADERBOARD</button></NavLink>
                     </div>
                     <div className="box">
-                        <button className="but2">LOG OUT</button>
-                        {/* <Logout/> */}
-                        {/* <button className="but1"><NavLink to="/Result">LOG OUT</NavLink></button> */}
+                    <LogOut/>
+
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
+import LogOut from '../Log Out/LogOut';
 
 // import Logout from '../CodingPage/Logout';
 
@@ -10,14 +11,12 @@ const Navbar = () => {
         <nav className="navigation navbar navbar-expand-lg">
             <div className="row">
                 <div className="headhere">LEADERBOARD</div>
-                <div className="row butbox">
+                <div className="row butleadbox">
                     <div className="box">
-                        <button className="but2"><Link to="/Questions">QUESTION HUB</Link></button>
+                    <NavLink to="/Questions"><button className="btn but2">QUESTION HUB</button></NavLink>
                     </div>
                     <div className="box">
-                        <button className="but2"></button>
-                        {/* <Logout/> */}
-                        {/* <button className="but1"><Link to="/Result">LOG OUT</Link></button> */}
+                    <LogOut/>
                     </div>
                 </div>
             </div>

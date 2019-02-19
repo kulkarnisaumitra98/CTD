@@ -1,10 +1,9 @@
 import React from 'react'
 import Testcase from './Testcase';
 import styled from 'styled-components'
-import Navbar from '../CodingPage/Navbar';
 import Footer from '../CodingPage/Footer';
 import axios from 'axios'
-
+import NavTest from './NavTest'
 
 const DivHere = styled.div`
     width:100%;
@@ -37,32 +36,29 @@ const BottomBox = styled.div`
     align-items:center;
 `;
 
-const ScoreBox = styled.div`
-    height:8vh;
-    width:30%;
-    border:2px solid green;
-    margin-right:5vw;
-`;
 
-const Console= styled.div`
-    height:64vh;
-    width:30vw;
-    border:3px solid black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-left:4.5vw;
-
-`;
 
 const ConsoleBox= styled.div`
-    height:10vh;
+    height:9vh;
     width:30vw;
-    border:3px solid black;
+    border:solid 3px rgb(6, 133, 133);
+    border-radius:10px;
+    background-color:black;
     display:flex;
     justify-content:center;
     align-items:center;
     margin-left:4.5vw;
+    color:rgba(233,233,233,0.98);
+    font-size:2.9vh;
+
+`;
+
+const P= styled.p`
+    margin-left:5vw;
+    margin-right:1vw;
+    font-size:3vh;
+    margin-top:1.5vh;
+    color: rgb(192, 201, 201);
 
 
 `;
@@ -105,7 +101,7 @@ class Test extends React.Component {
         //console.log(this.state.loading)
         return (
             <div>
-                <Navbar/>
+                <NavTest/>
 
             <section className="container-fluid bigbody">
 
@@ -123,19 +119,22 @@ class Test extends React.Component {
 
                     </DivHere>
                     <BottomBox>
-                        <ScoreBox>{this.state.status}</ScoreBox>
-                        <ScoreBox>{this.state.score}</ScoreBox>
+                        <P>SCORE:</P>
+                        <div className="ScoreBox">{this.state.score}</div>
+                        <button className='btn buttest'>RETRY</button>
+                        <P>STATUS:</P>
+                        <div className="StatusBox">{this.state.status}</div>
 
                     </BottomBox>
                 </MainBoxleft>
                 <MainBoxright>
                     <div className="row">
                     <ConsoleBox>
-
+                        CONSOLE
                     </ConsoleBox>
-                    <Console>
-
-                    </Console>
+                    <div className="Console">
+                        {this.state.error}
+                    </div>
                     </div>
                 </MainBoxright>
 

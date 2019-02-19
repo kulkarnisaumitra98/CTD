@@ -33,8 +33,13 @@
     background: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 0px solid red;
-  }
+    border-radius: 100px;
+    color: rgb(214, 236, 236);
+    }
   .LeaderLeaderbox{
     height: 76vh;
     width:100%;
@@ -48,20 +53,27 @@
     justify-content: center;
     border: 0px solid black;
   } 
-  .tableup {
+  .ltableup {
     background: rgba(0, 0, 0, 0.4);
     width: 90%;
     height: 5vh;
     margin-left: 5vw;
-    color: white;
+    color: rgba(185, 223, 223, 0.911);
+    border-radius:3vh;
+    background-color: rgba(0, 0, 0, 0.712);
+    font-size: 2.6vh;
+
   }
-  .tabledown {
+  .ltabledown {
     background: rgba(0, 0, 0, 0.4);
     width: 90%;
     height: 5vh;
     margin-left: 5vw;
     overflow: auto;
-    color: white;
+    color: rgb(224, 224, 224);
+    border-radius:2vh;
+    font-size:2vh;
+
           
   }
   .leadertable{
@@ -72,26 +84,72 @@
   .leadertable::-webkit-scrollbar{
       display: none;
   }
-  th,
-  td {
-    height: 10vh;
+  .butleadbox{
+    margin-left: 42vw;
   }
-  .rank {
+  .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.5vh;
+    border: 0px solid green;
+  }
+  .but2{
+    height: 5vh;
     width: 10vw;
-  }
-  .team {
-    width: 30vw;
-  }
-  .ques {
-    width: 8vw;
-  }
-  .total {
-    width: 10vw;
-  }
-  .theadline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(1, 105, 105);
+    color: white;
+    border: 0px solid black;
+    border-radius: 5px; 
+    /* box-shadow: 2px 1px 0px 1px black; */
   
   }
+  th,
+  td {
+    height: 40vh;
+  }
+  .teamrank {
+    font-size: 2.6vh;
+    justify-content: center;
+    margin-left: 2vw;
+    padding-left: 4vw;
+    width: 12vw;
+  }
+  .teamame {
+    font-size: 2.6vh;
+    width: 18vw;
+ }
+  .ques {
+    font-size: 2.6vh;
+    width: 8vw;
+
+  }
+  .totalsc {
+    font-size: 2.6vh;
+    width: 10vw;
+  }
+  .teamrankd {
+    justify-content: center;
+    margin-left: 2vw;
+    padding-left: 5vw;
+    width: 12vw;
+  }
+  .teamamed {
+    width: 18vw;
+ }
+  .quesd {
+    width: 8vw;
+
+  }
+  .totalscd{
+    width: 10vw;
+  }
+ 
   .line1{
-      border-bottom: 1px solid white;   
+      border-bottom: 4px solid rgb(0, 0, 0); 
+      margin-top: 2vh;  
   }
  

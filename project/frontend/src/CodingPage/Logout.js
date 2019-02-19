@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal from 'react-responsive-modal'
+// import Modal from 'react-responsive-modal'
 import styled from 'styled-components'
 
 const ModalHeader = styled.div`
@@ -28,12 +28,13 @@ class Logout extends React.Component{
         const { open } = this.state;
         return (
           <div>
-            <button onClick={this.onOpenModal}>Log Out</button>
+            <ModalHeader></ModalHeader>
+            {/* <button onClick={this.onOpenModal}>Log Out</button>
             <Modal open={open} onClose={this.onCloseModal} classNames="">
                 <ModalHeader>
 
                 </ModalHeader>
-            </Modal>
+            </Modal> */}
           </div>
         )
       }
