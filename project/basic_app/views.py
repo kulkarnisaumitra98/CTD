@@ -243,21 +243,21 @@ def questions(request, id=1):
                     rte_flag = True
                     status = "RTE"   # strings to display on console
 
-                if UserQ.objects.filter(user = request.user, Qid=id):
-                    if UserQ.objects.get(user=request.user, Qid=id).score <= user.score:
-                        q = UserQ.objects.get(user=request.user, Qid=id)
+                if UserQ.objects.filter(user = user.user, Qid=id):
+                    if UserQ.objects.get(user=user.user, Qid=id).score <= user.score:
+                        q = UserQ.objects.get(user=user.user, Qid=id)
                         q.score = user.score
                         q.save()
-                        UserQ.objects.get(user=request.user, Qid=id).save()
+                        UserQ.objects.get(user=user.user, Qid=id).save()
                 else:
-                    q = UserQ(Qid=id, user=request.user)
+                    q = UserQ(Qid=id, user=user.user)
                     q.score = user.score
                     q.save()
 
                 user.save()
 
                 user.totalScore = 0
-                user1 = User.objects.get(username=request.user.username)
+                user1 = User.objects.get(username=user.user.username)
                 for userque in user1.userq_set.all():
                     user.totalScore += userque.score
 
@@ -355,11 +355,12 @@ def question_panel(request):
 def leader(request):
     if request.user.is_authenticated:
             a = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
+            b = a.reverse()
 
             users = [
             ]
 
-            for user in a:
+            for user in b:
                 templist = [0] * 6
                 for i in range(6):
                     if UserQ.objects.filter(Qid=i + 1, user=user.user):
