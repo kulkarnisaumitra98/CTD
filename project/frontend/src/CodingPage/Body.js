@@ -5,6 +5,7 @@ import Editor from './Editor'
 import Navbar from './Navbar';
 import Footer from './Footer';
 import './coding.css'
+import Nav from '../Nav'
 
 class Body extends React.Component {
     constructor(props) {
@@ -129,7 +130,6 @@ class Body extends React.Component {
 
         return (
             <div>
-                <Navbar />
                 <section className="container-fluid bigbody">
 
                     <div className="row BodY">

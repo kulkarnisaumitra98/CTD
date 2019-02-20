@@ -17,11 +17,11 @@ class Result extends React.Component{
 
         render(){
             return (
-
-                <MainBoxleft>
-
-                </MainBoxleft>
-
+                <div>
+                    <MainBoxleft>
+                        YOOOO
+                    </MainBoxleft>
+                </div>
             )
         }
 }

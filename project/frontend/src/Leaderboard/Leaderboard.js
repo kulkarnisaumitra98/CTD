@@ -1,5 +1,4 @@
 import React from 'react'
-import NavLeader from './NavLeader';
 import Footer from '../CodingPage/Footer';
 import axios from 'axios'
 import './leaderboard.css'
@@ -34,7 +33,6 @@ class Leaderboard extends React.Component {
     render() {
         return (
             <div>
-                <NavLeader />
                 <section className="container-fluid leader">
                     <div className="a">
                         <div className="Leaderbox">

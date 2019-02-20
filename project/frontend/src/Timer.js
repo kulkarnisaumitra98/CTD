@@ -5,44 +5,48 @@ class Timer extends Component {
     constructor(props){
         super(props)
         
-        this.x = null
+        this.interval = null
     }
 
     state = {
-        flag:true,
         time:this.props.time,
         stringTime:''
     }
 
     calTimer = (time) => {
         let x = time
+
+        const hour = Math.floor(x / 3600)
+        const min = Math.floor((x % 3600) / 60)
+        const sec = (x % 3600) % 60
+        const stringTime = "" +  hour + ':' + min + ':' + sec
+
         x -= 1
 
         this.setState({
-            time: x
+            time:x,
+            stringTime:stringTime
         })
         
         
-
-        //console.log(time)
-        const hour = Math.floor(time / 3600)
-        const min = Math.floor((time % 3600) / 60)
-        const sec = (time % 3600) % 60
-        const stringTime = "" +  hour + ':' + min + ':' + sec
-
-        this.setState({
-            stringTime:stringTime
-        }) 
     }
 
     componentDidMount(){
-        this.x = setInterval(() => this.calTimer(this.state.time),1000)
+        this.interval = setInterval(() => this.calTimer(this.state.time),1000)
+    }
+
+    componentWillUnmount() {
+        if(this.state.time <= 0) {
+            clearInterval(this.x)
+
+            this.props.history.push('/Result')
+        }
     }
 
 
     render() {
         return (
-            <div style={{ marginLeft: '45vw', color: 'white' }}>
+            <div style={{color: 'white' }}>
                 {this.state.stringTime}
             </div>
         )

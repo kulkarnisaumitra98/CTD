@@ -3,28 +3,25 @@ import { Link, withRouter } from 'react-router-dom'
 import './coding.css'
 import LogOut from '../Log Out/LogOut';
 
-const Navbar = (props) => {
 
+const Navbar = (props) => {
     return (
-        <nav className="navig navbar navbar-expand-lg">
-            <div className="row">
-                <div className="head">CODING PAGE</div>
-                <div className="row movbutleft">
-                    <div className="buttonbox">
-                        <Link to={"/Submissions/" + props.match.params.pk}><button className="but1 btn">SUBMISSION</button></Link>
-                    </div>
-                    <div className="buttonbox">
-                        <Link to="/Questions">  <button className="but1 btn">QUESTION HUB</button></Link>
-                    </div>
-                    <div className="buttonbox">
-                        <Link to="/Leaderboard">  <button className="but1 btn">LEADERBOARD</button></Link>
-                    </div>
-                    <div className="buttonbox">
-                        <LogOut/>
-                    </div>
+        <div className="head">CODING PAGE
+            <div className="row bigbuttonbox">
+                <div className="buttonbox">
+                    <button className="but1"><Link to={"/Submissions/" + props.match.params.pk}>SUBMISSION</Link></button>
+                </div>
+                <div className="buttonbox">
+                    <button className="but1"><Link to="/Questions">QUESTION HUB</Link></button>
+                </div>
+                <div className="buttonbox">
+                    <button className="but1"><Link to="/Leaderboard">LEADERBOARD</Link></button>
+                </div>
+                <div className="buttonbox">
+                    <LogOut/>
                 </div>
             </div>
-        </nav>
+        </div>
     )
 }
 

@@ -4,6 +4,7 @@ import Footer from '../CodingPage/Footer'
 import Question from './Question'
 import axios from 'axios';
 import './question.css'
+import Nav from '../Nav'
 
 class Questions extends React.Component {
     constructor(props) {
@@ -33,7 +34,6 @@ class Questions extends React.Component {
     render() {
          return (
             <div>
-            <NavbarQues />
                 <section className="container-fluid queshub ">
 
                     <div className="part1">

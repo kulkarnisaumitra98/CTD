@@ -4,6 +4,7 @@ import axios from 'axios'
 import './submission.css'
 import NavSub from './NavSub';
 import {withRouter} from 'react-router-dom'
+import Nav from '../Nav'
 
 class Submission extends React.Component {
 
@@ -47,7 +48,6 @@ class Submission extends React.Component {
     render() {
         return (
             <div>
-                <NavSub />
                 <section className="container-fluid submiss">
                     <div className="ab">
                         <div className="subbox">

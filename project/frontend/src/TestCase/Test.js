@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Footer from '../CodingPage/Footer';
 import axios from 'axios'
 import NavTest from './NavTest'
+import Nav from '../Nav'
 
 const DivHere = styled.div`
     width:100%;
@@ -101,8 +102,7 @@ class Test extends React.Component {
         //console.log(this.state.loading)
         return (
             <div>
-                <NavTest/>
-
+            
             <section className="container-fluid bigbody">
 
                 <MainBoxleft>
