@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework import permissions
@@ -137,178 +137,180 @@ def nowTime():
 
 def questions(request, id=1):
     if request.user.is_authenticated:
-        if request.method == 'POST':
-            print(request.user)
-            body_unicode = request.body.decode('utf-8')
-            Postobject = json.loads(body_unicode)
+        if request.is_ajax():
+            print('WTFFFF IS GOING ON')
+            if request.method=='POST':
+                print(request.user)
+                body_unicode = request.body.decode('utf-8')
+                Postobject = json.loads(body_unicode)
 
-            some_text = Postobject['questionField']  # code to store in submission instance
-            subb = Submissions(user=request.user, que=Questions.objects.get(pk=id))
-            subb.sub = some_text
-            time = nowTime()
-            hour = time // (60 * 60)
-            a = time % (60 * 60)
-            if a < 60:
-                sec = a
-                min = 0
-            else:
-                min = a // 60
-                sec = a % 60
-
-            subb.subtime = '{}:{}:{}'.format(hour, min, sec)    # stores time of submission
-
-            option = Postobject['lang']   # get c or cpp
-            username = request.user.username
-            user = UserProfileInfo.objects.get(user=request.user)
-            juniorSenior = user.level
-            user.option = option
-            subb.save()
-
-            testlist = ['fail', 'fail', 'fail', 'fail', 'fail']
-
-            user.attempts += 1
-
-            fo = open('{}/{}/question{}/{}{}.{}'.format(path, username, id, username, user.attempts, option), 'w')
-            fo.write(some_text)     # writes .c file
-            fo.close()
-
-            dictt = {}
-
-            if os.path.exists('{}/{}/question{}/{}{}.{}'.format(path, username, id, username, user.attempts, option)):
-                ans = os.popen("python data/main.py " + "{}/{}/question{}/{}{}.{}".format(path, username, id, username, user.attempts, option) + " " + username + " " + str(id) + " " + juniorSenior + " " + str(user.attempts)).read()
-                # sandbox returns the 2 digit code of five testcases as a single integer of 10 digit number
-                ans = int(ans)  # saves 99'99'89'99'50 as 9999899950 these ae sandbox returned codes of 5 testcases
-                print("THE SANDBOX CODE IS", ans)
-                data = [1, 2, 3, 4, 5]  # codes of each testcase for the question
-                tcOut = [0, 1, 2, 3, 4] # switch case number for sandbox coode
-                switch = {
-
-                    10: 0,  # correct answer code
-                    99: 1,  # wrong answer code
-                    50: 2,  # System commands
-                    89: 3,  # compile time error
-                    70: 4,  # Abnormal termination
-                    20: 5,  # custom error
-                    60: 6,  # Run time error
-                    40: 7   # Motherfucking code
-                }
-
-                user.score = 0
-                for i in range(0, 5):
-                    data[i] = ans % 100	# stores output for each case but in reverse order
-                    ans = int(ans / 100)
-
-                    tcOut[i] = switch.get(data[i], 2)
-                    if tcOut[i] == 0:  # if data[i] is 10 i.e correct answer
-                        testlist[4 - i] = 'pass'    # since data stored in reverse order
-
-                testlistcopy = ['pass'] * 5
-
-                if testlist == testlistcopy:
-                    user.score = 100
+                some_text = Postobject['questionField']  # code to store in submission instance
+                subb = Submissions(user=request.user, que=Questions.objects.get(pk=id))
+                subb.sub = some_text
+                time = nowTime()
+                hour = time // (60 * 60)
+                a = time % (60 * 60)
+                if a < 60:
+                    sec = a
+                    min = 0
                 else:
+                    min = a // 60
+                    sec = a % 60
+
+                subb.subtime = '{}:{}:{}'.format(hour, min, sec)    # stores time of submission
+
+                option = Postobject['lang']   # get c or cpp
+                username = request.user.username
+                user = UserProfileInfo.objects.get(user=request.user)
+                juniorSenior = user.level
+                user.option = option
+                subb.save()
+
+                testlist = ['fail', 'fail', 'fail', 'fail', 'fail']
+
+                user.attempts += 1
+
+                fo = open('{}/{}/question{}/{}{}.{}'.format(path, username, id, username, user.attempts, option), 'w')
+                fo.write(some_text)     # writes .c file
+                fo.close()
+
+                dictt = {}
+
+                if os.path.exists('{}/{}/question{}/{}{}.{}'.format(path, username, id, username, user.attempts, option)):
+                    ans = os.popen("python data/main.py " + "{}/{}/question{}/{}{}.{}".format(path, username, id, username, user.attempts, option) + " " + username + " " + str(id) + " " + juniorSenior + " " + str(user.attempts)).read()
+                    # sandbox returns the 2 digit code of five testcases as a single integer of 10 digit number
+                    ans = int(ans)  # saves 99'99'89'99'50 as 9999899950 these ae sandbox returned codes of 5 testcases
+                    print("THE SANDBOX CODE IS", ans)
+                    data = [1, 2, 3, 4, 5]  # codes of each testcase for the question
+                    tcOut = [0, 1, 2, 3, 4] # switch case number for sandbox coode
+                    switch = {
+
+                        10: 0,  # correct answer code
+                        99: 1,  # wrong answer code
+                        50: 2,  # System commands
+                        89: 3,  # compile time error
+                        70: 4,  # Abnormal termination
+                        20: 5,  # custom error
+                        60: 6,  # Run time error
+                        40: 7   # Motherfucking code
+                    }
+
                     user.score = 0
+                    for i in range(0, 5):
+                        data[i] = ans % 100	# stores output for each case but in reverse order
+                        ans = int(ans / 100)
 
-                user.save()
+                        tcOut[i] = switch.get(data[i], 2)
+                        if tcOut[i] == 0:  # if data[i] is 10 i.e correct answer
+                            testlist[4 - i] = 'pass'    # since data stored in reverse order
 
-                cerror = ""
+                    testlistcopy = ['pass'] * 5
 
-                tle_flag = False
-                abt_flag = False
-                rte_flag = False
-                cte_flag = False
+                    if testlist == testlistcopy:
+                        user.score = 100
+                    else:
+                        user.score = 0
 
-                status = ""
+                    user.save()
 
-                if tcOut[4] == 3:   # if compiler error then store read it for error.txt which was made in main.py
-                    cte_flag = True # and store it in strinf cerror to display on console
-                    error = path + "/" + username + "/" + str("error{}.txt".format(id))
-                    status = "CTE"
-                    with open(error, 'r') as e:
-                        cerror = e.read()
-                        cerror1 = cerror.split('/')
+                    cerror = ""
 
-                        cerror2 = cerror1[0]+'/'+cerror1[1]+'/'+cerror1[2]+'/'
-                        cerror = cerror.replace(cerror2, '')    # scrape the file path of users
+                    tle_flag = False
+                    abt_flag = False
+                    rte_flag = False
+                    cte_flag = False
 
-                if tcOut[0] == 2 or tcOut[1] == 2 or tcOut[2] == 2 or tcOut[3] == 2 or tcOut[4] == 2:
-                    tle_flag = True
-                    status = "TLE"
+                    status = ""
 
-                if tcOut[0] == 4 or tcOut[1] == 4 or tcOut[2] == 4 or tcOut[3] == 4 or tcOut[4] == 4:
-                    abt_flag = True
-                    status = "W.A"
+                    if tcOut[4] == 3:   # if compiler error then store read it for error.txt which was made in main.py
+                        cte_flag = True # and store it in strinf cerror to display on console
+                        error = path + "/" + username + "/" + str("error{}.txt".format(id))
+                        status = "CTE"
+                        with open(error, 'r') as e:
+                            cerror = e.read()
+                            cerror1 = cerror.split('/')
 
-                if tcOut[0] == 5 or tcOut[1] == 5 or tcOut[2] == 5 or tcOut[3] == 5 or tcOut[4] == 5:
-                    abt_flag = True
-                    status = "RTE"
+                            cerror2 = cerror1[0]+'/'+cerror1[1]+'/'+cerror1[2]+'/'
+                            cerror = cerror.replace(cerror2, '')    # scrape the file path of users
 
-                if tcOut[0] == 6 or tcOut[1] == 6 or tcOut[2] == 6 or tcOut[3] == 6 or tcOut[4] == 6:
-                    rte_flag = True
-                    status = "RTE"   # strings to display on console
+                    if tcOut[0] == 2 or tcOut[1] == 2 or tcOut[2] == 2 or tcOut[3] == 2 or tcOut[4] == 2:
+                        tle_flag = True
+                        status = "TLE"
 
-                if tcOut[0] == 7 or tcOut[1] == 7 or tcOut[2] == 7 or tcOut[3] == 7 or tcOut[4] == 7:
-                    rte_flag = True
-                    status = "RTE"   # strings to display on console
+                    if tcOut[0] == 4 or tcOut[1] == 4 or tcOut[2] == 4 or tcOut[3] == 4 or tcOut[4] == 4:
+                        abt_flag = True
+                        status = "W.A"
 
-                if UserQ.objects.filter(user = user.user, Qid=id):
-                    if UserQ.objects.get(user=user.user, Qid=id).score <= user.score:
-                        q = UserQ.objects.get(user=user.user, Qid=id)
+                    if tcOut[0] == 5 or tcOut[1] == 5 or tcOut[2] == 5 or tcOut[3] == 5 or tcOut[4] == 5:
+                        abt_flag = True
+                        status = "RTE"
+
+                    if tcOut[0] == 6 or tcOut[1] == 6 or tcOut[2] == 6 or tcOut[3] == 6 or tcOut[4] == 6:
+                        rte_flag = True
+                        status = "RTE"   # strings to display on console
+
+                    if tcOut[0] == 7 or tcOut[1] == 7 or tcOut[2] == 7 or tcOut[3] == 7 or tcOut[4] == 7:
+                        rte_flag = True
+                        status = "RTE"   # strings to display on console
+
+                    if UserQ.objects.filter(user = user.user, Qid=id):
+                        if UserQ.objects.get(user=user.user, Qid=id).score <= user.score:
+                            q = UserQ.objects.get(user=user.user, Qid=id)
+                            q.score = user.score
+                            q.save()
+                            UserQ.objects.get(user=user.user, Qid=id).save()
+                    else:
+                        q = UserQ(Qid=id, user=user.user)
                         q.score = user.score
                         q.save()
-                        UserQ.objects.get(user=user.user, Qid=id).save()
-                else:
-                    q = UserQ(Qid=id, user=user.user)
-                    q.score = user.score
-                    q.save()
 
-                user.save()
+                    user.save()
 
-                user.totalScore = 0
-                user1 = User.objects.get(username=user.user.username)
-                for userque in user1.userq_set.all():
-                    user.totalScore += userque.score
+                    user.totalScore = 0
+                    user1 = User.objects.get(username=user.user.username)
+                    for userque in user1.userq_set.all():
+                        user.totalScore += userque.score
 
-                user.total = user.totalScore // 6
-                user.save()
+                    user.total = user.totalScore // 6
+                    user.save()
 
-                Q = Questions.objects.get(id=id)    # current question object
+                    Q = Questions.objects.get(id=id)    # current question object
 
-                for_count = 0
-
-                for i in testlist:
-                    if i == 'pass':
-                        for_count += 1
-
-                if for_count == 5:
-                    status = 'A.C'
-                    Q.submission += 1      # if score 100 then increase successful subs for that question by 1
-                    Q.save()
-
-                else:
-                    if not (tle_flag or rte_flag or abt_flag or cte_flag):
-                        status = 'W.A'
                     for_count = 0
 
-                subb.testCaseScore = (for_count / 5) * 100  # testcase % completion
+                    for i in testlist:
+                        if i == 'pass':
+                            for_count += 1
 
-                subb.save()
-                if subb.testCaseScore == 100:
-                    user.uacsubtime = '{}:{}:{}'.format(hour, min, sec)
+                    if for_count == 5:
+                        status = 'A.C'
+                        Q.submission += 1      # if score 100 then increase successful subs for that question by 1
+                        Q.save()
 
-                user.save()
+                    else:
+                        if not (tle_flag or rte_flag or abt_flag or cte_flag):
+                            status = 'W.A'
+                        for_count = 0
 
-                dictt = {'e':cerror,
-                         't':nowTime(),
-                         'testlist':testlist,
-                         'status':status,
-                         'score': user.score}
+                    subb.testCaseScore = (for_count / 5) * 100  # testcase % completion
 
-            return JsonResponse(dictt)
+                    subb.save()
+                    if subb.testCaseScore == 100:
+                        user.uacsubtime = '{}:{}:{}'.format(hour, min, sec)
+
+                    user.save()
+
+                    dictt = {'e':cerror,
+                             't':nowTime(),
+                             'testlist':testlist,
+                             'status':status,
+                             'score': user.score}
+
+                return JsonResponse(dictt)
         else:
             return render(request, 'frontend/index.html')
     else:
-        return render(request, 'frontend/index.html')
+         return redirect(reverse('register'))
 
 
 def question_panel(request):
@@ -361,11 +363,12 @@ def question_panel(request):
         else:
             return render(request, 'frontend/index.html')
     else:
-        return render(request, 'frontend/index.html')
+        return redirect(reverse('register'))
 
 
 def leader(request):
     if request.user.is_authenticated:
+        if request.is_ajax():
             a = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
             b = a.reverse()
 
@@ -389,8 +392,10 @@ def leader(request):
             }
 
             return JsonResponse(response_data)
+        else:
+            return render(request, 'frontend/index.html')
     else:
-        return HttpResponseRedirect(reverse('player/1/'))
+        return redirect(reverse('register'))
 
 
 def instructions(request):
@@ -403,31 +408,35 @@ def instructions(request):
             return HttpResponseRedirect(reverse('question_panel'))
         if request.method == "POST":
             return HttpResponseRedirect(reverse('question_panel'))
-        return render(request, 'basic_app/instruction.html')
+        return render(request, 'frontend/index.html')
     else:
         return HttpResponseRedirect(reverse('register'))
 
 
 def user_logout(request):
     if request.user.is_authenticated:
-        try:
-            user = UserProfileInfo.objects.get(user=request.user)
-        except UserProfileInfo.DoesNotExist:
-            return register(request)
-        a = UserProfileInfo.objects.order_by("total")
-        b = a.reverse()
-        counter = 0
-        for i in b:
-            counter += 1
-            if str(i.user) == str(request.user.username):
-                break
+        if request.is_ajax():
 
-        dict = {'count': counter, 'name': request.user.username, 'score': user.totalScore}
+            try:
+                user = UserProfileInfo.objects.get(user=request.user)
+            except UserProfileInfo.DoesNotExist:
+                return register(request)
+            a = UserProfileInfo.objects.order_by("total")
+            b = a.reverse()
+            counter = 0
+            for i in b:
+                counter += 1
+                if str(i.user) == str(request.user.username):
+                    break
 
-        logout(request)
-        return render(request, 'basic_app/Result.htm', context=dict)
+            dict = {'count': counter, 'name': request.user.username, 'score': user.totalScore}
+
+            logout(request)
+            return JsonResponse(dict)
+        else:
+            return render(request, 'frontend/index.html')
     else:
-        return HttpResponseRedirect(reverse('register'))
+        return redirect(reverse('register'))
 
 
 def register(request):
@@ -472,17 +481,23 @@ def register(request):
 
 
 def sub(request, id=1):
-    a = Submissions.objects.filter(user=request.user, que=Questions.objects.get(id=id)) # create sub for that question for that user
-    # check models for clear picture
+    if request.user.is_authenticated:
+        if request.is_ajax():
 
-    serializer = SubmissionSerializers(a, many=True)
+            a = Submissions.objects.filter(user=request.user, que=Questions.objects.get(id=id)) # create sub for that question for that user
+            # check models for clear picture
 
-    data = JSONRenderer().render(serializer.data).decode('utf-8')
-    data = json.loads(data)
-    data = {'data': data}
+            serializer = SubmissionSerializers(a, many=True)
 
-    return JsonResponse(data)
+            data = JSONRenderer().render(serializer.data).decode('utf-8')
+            data = json.loads(data)
+            data = {'data': data}
 
+            return JsonResponse(data)
+        else:
+            return render(request, 'frontend/index.html')
+    else:
+        return redirect(reverse('register'))
 
 def retry(request, id=1):
     if request.method == "GET":

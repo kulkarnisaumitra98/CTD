@@ -3,8 +3,6 @@ import Testcase from './Testcase';
 import styled from 'styled-components'
 import Footer from '../CodingPage/Footer';
 import axios from 'axios'
-import NavTest from './NavTest'
-import Nav from '../Nav'
 
 const DivHere = styled.div`
     width:100%;
@@ -67,7 +65,7 @@ const P= styled.p`
 class Test extends React.Component {
     constructor(props){
         super(props)
-        //console.log(this.props.history.location.state)
+        //console.log(this.props)
     }
 
     state = {
@@ -81,9 +79,9 @@ class Test extends React.Component {
     componentDidMount() {
         const url = '/Coding/' + this.props.history.location.state.q_id
 
-        axios.post(url, this.props.history.location.state).then(
+        axios.post(url, this.props.history.location.state, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
-                //console.log(response)
+                console.log(response)
                 if(response.request.status == 200) {
                     this.setState({
                         loading: false,
