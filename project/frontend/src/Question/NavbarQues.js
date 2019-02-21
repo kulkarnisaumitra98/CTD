@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import LogOut from '../Log Out/LogOut'
+import './question.css'
 
 
 const Navbar = (props) => {

@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
+import './player.css'
+import Footer from './Footer';
 import axios from 'axios'
+import './NCC.png'
+import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 
+const Player = styled.div`
+    height:70vh;
+    width: 30vw;
+    border: 0px solid yellow;
+    justify-content:center;
+    background-color: rgba(25, 107, 107, 0.197);
+    border-radius:10px;
+`;
 
 class Username extends Component {
 
@@ -19,11 +31,7 @@ class Username extends Component {
         phone2: this.props.history.location.state.phone,
         username: '',
         password: '',
-        level: 'senior'
-    }
-
-    componentDidUpdate() {
-        //console.log(this.state.level)
+        level: 'junior'
     }
 
     setInput = (event) => {
@@ -55,6 +63,7 @@ class Username extends Component {
         if (this.validateForm()) {
             const url = this.hostUrl + '/player/1/'
 
+            console.log(this.state)
             //console.log(url)
 
             axios({
@@ -89,50 +98,100 @@ class Username extends Component {
     render() {
         return (
             <div>
-                <h1>Enter the Username and Password </h1>
-                <form>
-                    <input
-                        onChange={this.setInput}
-                        type="text"
-                        name='username'
-                        placeholder='Username'
-                        value={this.state.username}
-                        onKeyUp={() => this.checkUser(this.value)}
-                    />
-                    <br />
-                    <input
-                        onChange={this.setInput}
-                        type='password'
-                        name='password'
-                        placeholder='Password'
-                        value={this.state.password}
-                    />
-                    <br />
-                    <div>
+                <div className="navigate  navbar navbar-expand-lg"></div>
+                    <div className="container-fluid centerbox">
+                         <div className="row">
+                            <div className="playerbox">
+                                <Player>    
+                                    <div className="playerdet">
+                                        <div className="playerhead">TEAM LOGIN</div>
+                                            <div className="row">
+                                            <div className="inp1 mt-5">
+                                                    
+                                                    <input
+                                                        required
+                                                        onChange={this.setInput}
+                                                        style={{
+                                                            width: "55%",
+                                                            border: "none",
+                                                            borderBottom: "2px solid black",
+                                                            backgroundColor: "transparent",
+                                                            color: "white"
+                                                        }}
+                                                        type="text"
+                                                        name='username'
+                                                        placeholder='Username'
+                                                        value={this.state.username}
+                                                        onKeyUp={() => this.checkUser(this.value)}
+                                                        autoComplete="off"
+
+                                                    />
+
+                                                     </div>
+                                                
+                                        <div className="inp1">
+
+                                            <input
+                                                required
+                                                style={{
+                                                    width: "55%",
+                                                    border: "none",
+                                                    borderBottom: "2px solid black",
+                                                    backgroundColor: "transparent",
+                                                    color: "white"
+                                                }}
+                                                onChange={this.setInput}
+                                                type='password'
+                                                 name='password'
+                                                    placeholder='Password'
+                                                value={this.state.password}
+                                                autoComplete="off"
+                                            />
+
+                                            </div>
+                                            
+                    <div className="inp1">
                         Junior
                             <input
-                            onClick={this.setInput}
                             type='radio'
-                            name='level'
+                            defaultChecked name='level'
                             value='junior'
                         />
 
-                        Senior
+                       <p style={{marginLeft:"2vh"}}> Senior</p>
                             <input
-                            onClick={this.setInput}
                             type='radio'
-                            defaultChecked name='level'
+                            name='level'
                             value='senior'
                         />
                     </div>
-                    <br />
-                </form>
-                <br />
-                <button onClick={this.postHandler}>Submit</button>
+
+
+
+                    <button onClick={this.postHandler}>Submit</button>
+
+                    </div>
             </div>
+        </Player>
+    </div>
+    </div>
+</div>
+<Footer/>
+</div>
         )
     }
 
 }
 
 export default withRouter(Username);
+
+
+
+
+
+
+             
+
+                    
+
+         

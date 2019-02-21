@@ -30,7 +30,7 @@ class Submission extends React.Component {
 
     componentDidMount() {
         const url = this.hostUrl + '/Submissions/' + this.props.match.params.pk
-        axios.get(url).then(
+        axios.get(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
                 //console.log(response.data.data)
                 const list = [...response.data.data].reverse()

@@ -2,10 +2,6 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import './test.css'
 import LogOut from '../Log Out/LogOut';
-import axios from 'axios'
-import Timer from '../Timer'
-
-// import Logout from './Logout';
 
 
 const NavTest = (props) => {

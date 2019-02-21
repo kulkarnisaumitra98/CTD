@@ -3,6 +3,7 @@ import Testcase from './Testcase';
 import styled from 'styled-components'
 import Footer from '../CodingPage/Footer';
 import axios from 'axios'
+import {withRouter, Link} from 'react-router-dom'
 
 const DivHere = styled.div`
     width:100%;
@@ -65,7 +66,8 @@ const P= styled.p`
 class Test extends React.Component {
     constructor(props){
         super(props)
-        //console.log(this.props)
+
+        console.log(this.props.match.params)
     }
 
     state = {
@@ -74,10 +76,11 @@ class Test extends React.Component {
         testlist: [],
         error: '',
         score : '',
+        qid:this.props.match.params.id,
     }
 
     componentDidMount() {
-        const url = '/Coding/' + this.props.history.location.state.q_id
+        const url = '/Coding/' + this.state.qid
 
         axios.post(url, this.props.history.location.state, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
@@ -89,6 +92,7 @@ class Test extends React.Component {
                         error:response.data.e,
                         testlist: [...response.data.testlist],
                         score: response.data.score,
+                        qid: response.data.qid
                     })
                 }
             }
@@ -119,7 +123,7 @@ class Test extends React.Component {
                     <BottomBox>
                         <P>SCORE:</P>
                         <div className="ScoreBox">{this.state.score}</div>
-                        <button className='btn buttest'>RETRY</button>
+                        <button className='btn buttest'><Link to={'/Coding/' + this.state.qid}>RETRY</Link></button>
                         <P>STATUS:</P>
                         <div className="StatusBox">{this.state.status}</div>
 
@@ -148,5 +152,5 @@ class Test extends React.Component {
 
 }
 
-export default Test
+export default withRouter(Test)
 

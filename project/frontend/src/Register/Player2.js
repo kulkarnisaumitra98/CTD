@@ -1,4 +1,17 @@
 import React, { Component } from 'react'
+// import { Link } from 'react-router-dom';
+import './player.css'
+import Footer from './Footer';
+import './NCC.png'
+import styled from 'styled-components'
+const Player = styled.div`
+    height:70vh;
+    width: 30vw;
+    border: 0px solid yellow;
+    justify-content:center;
+    background-color: rgba(25, 107, 107, 0.197);
+    border-radius:10px;
+`;
 
 class Player2 extends Component {
 
@@ -11,6 +24,7 @@ class Player2 extends Component {
     state = {
         player1 : this.props.history.location.state,
         name: '',
+        email:'',
         phone: '',
     }
 
@@ -61,38 +75,103 @@ class Player2 extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Enter the details of Player 2</h1>
-                <form >
-                    <input
-                        required
-                        onChange={this.setInput}
-                        type="text"
-                        name='name'
-                        placeholder='Name'
-                        value={this.state.name}
-                        
-                    />
-                    <br />
-                    <input
-                        onChange={this.setInput}
-                        type='tel'
-                        name='phone'
-                        placeholder='Phone'
-                        value={this.state.phone}
-                    />
-                    <br />
-                </form>
-                <br/>
-                <button onClick={() => this.onClickHandler(false)}>Username</button>
-                <br/>
-                <button onClick={() => this.onClickHandler(true)}>Skip</button>
-                <br />
+            <div >
+                <div className="navigate  navbar navbar-expand-lg"></div>
+                <div className="container-fluid centerbox">
+                   <div className="row">
+                    <div className="playerbox">
+                        <Player>
+
+                            <div className="playerdet">
+                            <div className="playerhead">PLAYER 2</div>
+
+                                <div className="row">
+
+                                    <div className="inp1 mt-5">
+                                        <input
+                                            required
+                                            onChange={this.setInput}
+                                            style={{
+                                                width: "55%",
+                                                border: "none",
+                                                borderBottom: "2px solid black",
+                                                backgroundColor: "transparent",
+                                                color: "white"
+                                            }}
+                                            type="text"
+                                            name='name'
+                                            placeholder='Name'
+                                            value={this.state.name}
+                                            autoComplete="off"
+
+                                        />
+
+                                    </div>
+
+                                    <div className="inp1">
+
+                                        <input
+                                            required
+                                            style={{
+                                                width: "55%",
+                                                border: "none",
+                                                borderBottom: "2px solid black",
+                                                backgroundColor: "transparent",
+                                                color: "white"
+                                            }}
+                                            onChange={this.setInput}
+                                            type="email"
+                                            name='email'
+                                            placeholder='Email ID'
+                                            
+                                            value={this.state.email}
+                                            autoComplete="off"
+                                        />
+
+                                    </div>
+                                    <div className="inp1">
+
+                                        <input
+                                            required
+                                            onChange={this.setInput}
+                                            style={{
+                                                width: "55%",
+                                                border: "none",
+                                                borderBottom: "2px solid black",
+                                                backgroundColor: "transparent",
+                                                color: "white"
+                                            }}
+                                            type="text"
+                                            name='phone'
+                                            placeholder='Phone Number'
+                                            value={this.state.phone}
+                                            autoComplete="off"
+
+                                        />
+
+                                    </div>
+                                    <div className="inp1">
+                                        <button className="btn butpro" onClick={this.onClickHandler}> NEXT </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </Player>
+
+                    </div>
+                    </div>
+                    <button onClick={() => this.onClickHandler(false)}>Username</button>
+                    <button onClick={() => this.onClickHandler(true)}>Skip</button>
+                </div>
+                <Footer />
 
             </div>
+           
         )
     }
 
 }
 
 export default Player2;
+
+

@@ -19,7 +19,7 @@ class Leaderboard extends React.Component {
 
     componentDidMount() {
         const url = this.hostUrl + '/Leaderboard/'
-        axios.get(url).then(
+        axios.get(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
                 
                 this.setState({

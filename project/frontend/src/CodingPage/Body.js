@@ -2,10 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import Editor from './Editor'
-import Navbar from './Navbar';
 import Footer from './Footer';
 import './coding.css'
-import Nav from '../Nav'
+
 
 class Body extends React.Component {
     constructor(props) {
@@ -51,14 +50,6 @@ class Body extends React.Component {
             })
     }
 
-    componentWillUpdate = () => {
-       // console.log('Coding component will update ')
-    }
-
-    componentDidUpdate() {
-        //console.log('Coding component did update-> ', this.state.questionField)
-    }
-
     setInput = (event) => {
         const { name, value } = event.target
 
@@ -68,9 +59,7 @@ class Body extends React.Component {
     }
 
     getEditorValue = (value) => {
-        //console.log(value)
-        //console.log('Onchange')
-
+    
         this.setState({
             questionField: value,
             method:null,
@@ -78,7 +67,8 @@ class Body extends React.Component {
     }
 
     onClickHandler = () => {
-        this.props.history.push('/Testcase', this.state)
+        const url = '/Testcase/' + this.state.q_id
+        this.props.history.push(url, this.state)
         
     }
 
@@ -131,7 +121,6 @@ class Body extends React.Component {
         return (
             <div>
                 <section className="container-fluid bigbody">
-
                     <div className="row BodY">
                         <div className="insideBody mt-3">
                             <div className="scorekey">SCORE</div>

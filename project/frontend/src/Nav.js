@@ -39,12 +39,12 @@ class Nav extends React.Component {
                     <div className="row">
                         {time}
                         <Switch>
-                            <Route exact path='/TestCase' component={NavTest} />
+                            <Route exact path='/TestCase/:id' component={NavTest} />
                             <Route exact path='/Submissions/:pk' component={NavSub} />
                             <Route exact path='/Questions' component={NavbarQues} />
                             <Route exact path='/Leaderboard' component={NavLeader} />
                             <Route exact path='/Coding/:pk' component={Navbar} />
-                    </Switch>
+                        </Switch>
                     </div>
                 </nav>            
             </div>

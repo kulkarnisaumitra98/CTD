@@ -120,6 +120,10 @@ def waiting(request):
     return render(request, 'frontend/index.html', {})
 
 
+def testcase(request):
+    return render(request, 'frontend/index.html', {})
+
+
 def timer(request):
     now = datetime.datetime.now()
     time = now.second + now.minute * 60 + now.hour * 60 * 60
@@ -138,7 +142,6 @@ def nowTime():
 def questions(request, id=1):
     if request.user.is_authenticated:
         if request.is_ajax():
-            print('WTFFFF IS GOING ON')
             if request.method=='POST':
                 print(request.user)
                 body_unicode = request.body.decode('utf-8')
@@ -304,7 +307,8 @@ def questions(request, id=1):
                              't':nowTime(),
                              'testlist':testlist,
                              'status':status,
-                             'score': user.score}
+                             'score': user.score,
+                             'qid': id}
 
                 return JsonResponse(dictt)
         else:
@@ -498,6 +502,7 @@ def sub(request, id=1):
             return render(request, 'frontend/index.html')
     else:
         return redirect(reverse('register'))
+
 
 def retry(request, id=1):
     if request.method == "GET":

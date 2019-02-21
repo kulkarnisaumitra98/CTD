@@ -1,9 +1,10 @@
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import LogOut from '../Log Out/LogOut';
+import './leaderboard.css'
 
 
-const Navbar = (props) => {
+const Navbar = () => {
     return (
         <div className="headhere">LEADERBOARD
                     <div className="row butleadbox">

@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import LogOut from '../Log Out/LogOut';
+import './submission.css'
 
-const Navbar = (props) => {
+const Navbar = () => {
     return (
         <div className="headhere">SUBMISSION
                     <div className="row butbox">

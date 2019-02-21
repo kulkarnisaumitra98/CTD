@@ -9,16 +9,15 @@ import Result from './Result/Result';
 import LogOut from './Log Out/LogOut';
 import Nav from './Nav'
 
+
 class AppMain extends React.Component {
-
-
     render() {
         return (
             <BrowserRouter>
                 <div>
                     <Nav />
                     <Switch>
-                        <Route exact path='/TestCase' component={Test} />
+                        <Route exact path='/TestCase/:id' component={Test} />
                         <Route exact path='/Submissions/:pk' component={Submission}/>
                         <Route exact path='/Questions' component={Questions} />
                         <Route exact path='/Leaderboard' component={Leaderboard}/>

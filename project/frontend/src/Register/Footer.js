@@ -1,9 +1,12 @@
 import React from 'react'
 
-function Footer() {
+const Footer = () => {
+
     return (
-        <div className="col-lg-12 col-xs-12 col-mr-12" style={{ height: "7vh", marginTop: "0vh", backgroundColor: "#000" }}>
-        </div>
+        <nav className="navig navbar navbar-expand-lg d-flex justify-content-center align-items-center">
+            <div className="footer">&copy; PICT IEEE COMPUTER SOCIETY</div>
+        </nav>
     )
 }
+
 export default Footer

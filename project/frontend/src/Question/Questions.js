@@ -1,10 +1,8 @@
 import React from 'react'
-import NavbarQues from './NavbarQues'
 import Footer from '../CodingPage/Footer'
 import Question from './Question'
 import axios from 'axios';
 import './question.css'
-import Nav from '../Nav'
 
 class Questions extends React.Component {
     constructor(props) {
