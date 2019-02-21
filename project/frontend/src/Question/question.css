@@ -68,14 +68,14 @@
       width: 100%;
       height: 32vh;
       text-align: center;
-      border: 0px solid red;
+      border: 1px  black;
       box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.397);
       border-radius: 10px;
     }
     .flip-card-front {
       width: 36vh;
       height: 32vh;
-      border: 0px solid red;
+      border: 1px  black;
       background-color: rgba(212, 236, 236, 0.692);
       box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.397);
       color: black;
@@ -102,21 +102,27 @@
       width: 100%;
       height: 9vh;
       border: 0px solid green;
-      font-weight: 500;
+      font-weight: 700;
     }
     .accuracy {
-      height: 8vh;
+      height: 11vh;
       width: 100%;
       border: 0px solid red;
-      /* padding-top: 2vh; */
-      /* display: flex; */
-      /* margin-top: -12vh; */
+      padding-top: 2vh; 
+       display: flex; 
+      margin-top: 0vh;
+      margin-left: 0.08vw;
       justify-content: center;
     }
     .insideaccu{
-      border: 0px solid red;
-      height: 8vh;
+      border: 0px solid green;
+      height: 4vh;
       width:80%;
+    }
+    .accutext{
+      border: 0px solid red;
+      height: 4vh;
+      width:100%;
     }
     .flip-card-back {
       height: 30vh;
@@ -151,11 +157,11 @@
       margin-left: -4vw;
     }
     .Q5 {
-      margin-left: 8vw;
+      margin-left: 9vw;
     }
     .Q6 {
     
-      margin-left: 8vw;
+      margin-left: 9vw;
     }
     .flip-card:hover{
       border-radius: 10px;

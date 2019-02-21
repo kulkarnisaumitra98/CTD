@@ -18,7 +18,8 @@ urlpatterns =[
     path('loadbuffer/<int:pk>/', views.loadbuff, name='loadbuffer'),
     path('timer/', views.startTimer),
     path('getTime/', views.timer),
-    path('Testcase/', views.testcase),
+    path('Testcase/<int:id>', views.questions),
+    path('Result/', views.result, name='Result'),
     path('', views.waiting),
 
 ]

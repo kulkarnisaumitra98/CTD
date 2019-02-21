@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Register from './Register/Register'
 import AppMain from './AppMain';
-import Instruction from './Instruction/Intruction'
+import Instruction from './Instruction/Instruction'
 import Waiting from './Waiting Page/Waiting'
 
 class App extends React.Component {

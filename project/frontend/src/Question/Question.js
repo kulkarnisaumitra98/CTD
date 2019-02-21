@@ -22,15 +22,20 @@ const question = (props) => {
                             {question.questionTitle}
                         </div>
 
-                        <div className="attempts">
+                        <div className="attempts mt-1">
+                            SUCCESSFUL SUBMISSIONS:
+                            <br/>
                             {question.submission}
                         </div>
-                    </div>
-                </div>
+                
 
 
 
-                    <div className="accuracy">
+                    <div className="accuracy row">
+                    <div className="accutext">ACCURACY</div>
+
+
+                        <div className="insideaccu">
                         <div className="progress">
                             <div
                                 className="progress-bar progress-bar-success"
@@ -42,9 +47,11 @@ const question = (props) => {
                             >
                             </div>
                         </div>
+                        </div>
                     </div>
 
-
+                    </div>
+                </div>
                 </div>
 
 

@@ -26,7 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1.1px solid black;
+    border: 1.4px solid black;
     border-radius: 5px;
     box-shadow: 2px 2px 2px 0px #000000;
     width: 90vw;
@@ -164,16 +164,18 @@
     margin-left: 10vw;
 }
 .movbutleft{
-    margin-left:16.5vw;
+    margin-left:19.5vw;
 }
-.buttonbox{
+.buttonboxcode{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5.5vh;
-    border: 0px solid green;
+  justify-content: center;
+  align-items: center;
+  height: 5.5vh;
+  border: 0px solid green;
+  font-size: 2.09vh;
+  margin-left: 4vh;
 }
-.but1{
+.but0{
     height: 5vh;
     width: 10vw;
     display: flex;
@@ -182,8 +184,8 @@
     background-color: rgb(1, 105, 105);
     color: white;
     border: 1px solid black;
-    box-shadow: 2px 2px black;;
     border-radius: 5px; 
+
     
 }
 .foot{

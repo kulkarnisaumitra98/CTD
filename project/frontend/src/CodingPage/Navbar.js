@@ -7,17 +7,17 @@ import LogOut from '../Log Out/LogOut';
 const Navbar = (props) => {
     return (
         <div className="head">CODING PAGE
-            <div className="row bigbuttonbox">
-                <div className="buttonbox">
-                    <button className="but1"><Link to={"/Submissions/" + props.match.params.pk}>SUBMISSION</Link></button>
+            <div className="row movbutleft">
+                <div className="buttonboxcode">
+                <Link to={"/Submissions/" + props.match.params.pk}><button className="but0">SUBMISSION</button></Link>
                 </div>
-                <div className="buttonbox">
-                    <button className="but1"><Link to="/Questions">QUESTION HUB</Link></button>
+                <div className="buttonboxcode">
+                <Link to="/Questions"><button className="but0">QUESTION HUB</button></Link>
                 </div>
-                <div className="buttonbox">
-                    <button className="but1"><Link to="/Leaderboard">LEADERBOARD</Link></button>
+                <div className="buttonboxcode">
+                <Link to="/Leaderboard"><button className="but0">LEADERBOARD</button></Link>
                 </div>
-                <div className="buttonbox">
+                <div className="buttonboxcode">
                     <LogOut/>
                 </div>
             </div>

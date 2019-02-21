@@ -120,7 +120,7 @@ def waiting(request):
     return render(request, 'frontend/index.html', {})
 
 
-def testcase(request):
+def result(request):
     return render(request, 'frontend/index.html', {})
 
 
@@ -169,7 +169,7 @@ def questions(request, id=1):
                 user.option = option
                 subb.save()
 
-                testlist = ['fail', 'fail', 'fail', 'fail', 'fail']
+                testlist = ['FAIL'] * 5
 
                 user.attempts += 1
 
@@ -205,9 +205,9 @@ def questions(request, id=1):
 
                         tcOut[i] = switch.get(data[i], 2)
                         if tcOut[i] == 0:  # if data[i] is 10 i.e correct answer
-                            testlist[4 - i] = 'pass'    # since data stored in reverse order
+                            testlist[4 - i] = 'PASS'    # since data stored in reverse order
 
-                    testlistcopy = ['pass'] * 5
+                    testlistcopy = ['PASS'] * 5
 
                     if testlist == testlistcopy:
                         user.score = 100
@@ -282,7 +282,7 @@ def questions(request, id=1):
                     for_count = 0
 
                     for i in testlist:
-                        if i == 'pass':
+                        if i == 'PASS':
                             for_count += 1
 
                     if for_count == 5:

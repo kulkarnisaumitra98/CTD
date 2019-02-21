@@ -11,7 +11,7 @@ const override = css`
 const TestCaseBox = styled.div`
     width:25%;
     height:25vh;
-    border:2px solid green;
+    border:0px solid green;
     margin-right:3vw;
     margin-left:2vw;
 `;
@@ -40,7 +40,7 @@ class Testcase extends React.Component {
         )
         :
         (
-            <div>
+            <div className="res">
                 {this.props.state.testlist[this.props.id - 1]}
             </div>
         )
@@ -48,7 +48,7 @@ class Testcase extends React.Component {
         return (
             <TestCaseBox>
                 <div className="InsideTest">
-                    Test Case {this.props.id}:
+                    TEST CASE {this.props.id}
                 </div>
                 <div className="BelowInsideTest">
                     {text}

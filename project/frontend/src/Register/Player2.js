@@ -65,7 +65,7 @@ class Player2 extends Component {
         return;
         }
 
-        if(this.validateForm()) {
+        if(true) {
             
             this.props.history.push('/player/username', params)
     
@@ -76,8 +76,8 @@ class Player2 extends Component {
     render() {
         return (
             <div >
-                <div className="navigate  navbar navbar-expand-lg"></div>
-                <div className="container-fluid centerbox">
+                <div className="navigatelogin  navbar navbar-expand-lg"></div>
+                <div className="container-fluid centerboxlogin">
                    <div className="row">
                     <div className="playerbox">
                         <Player>
@@ -151,7 +151,7 @@ class Player2 extends Component {
 
                                     </div>
                                     <div className="inp1">
-                                        <button className="btn butpro" onClick={this.onClickHandler}> NEXT </button>
+                                        <button className="btn butpro" onClick={() => this.onClickHandler(false)}> NEXT </button>
 
                                     </div>
                                 </div>

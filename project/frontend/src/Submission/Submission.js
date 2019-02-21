@@ -57,11 +57,11 @@ class Submission extends React.Component {
                         </div>
 
                         <div className="SubSubbox">
-                            <div className="Submission">
-                                <table className="tableup">
+                            <div className="Submissionsub">
+                                <table className="tableupsub">
                                     <tbody>
                                         <tr className="borderline">
-                                            <th className="rank">SR NO.</th>
+                                            <th className="ranksub">SR NO.</th>
                                             <th className="timeSub">TIME</th>
                                             <th className="status">STATUS</th>
                                             <th className="status"></th>
@@ -89,7 +89,7 @@ class Submission extends React.Component {
                                                             </div>
                                                             </div>
                                                         </td>
-                                                    <td className="butty"><button className='btn butbut' onClick={() => this.onClickHandler(index)} >VIEW</button></td>
+                                                    <td className="butty"><button className='btn butbut123' onClick={() => this.onClickHandler(index)} >VIEW</button></td>
 
                                                 </tr>
                                             )

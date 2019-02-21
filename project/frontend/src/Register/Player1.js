@@ -57,7 +57,7 @@ class Player1 extends Component {
 
     onClickHandler = () => {
 
-        if (this.validateForm()) {
+        if (true) {
 
             const params = this.state
 
@@ -69,8 +69,8 @@ class Player1 extends Component {
     render() {
         return (
             <div >
-                <div className="navigate  navbar navbar-expand-lg"></div>
-                <div className="container-fluid centerbox">
+                <div className="navigatelogin navbar navbar-expand-lg"></div>
+                <div className="container-fluid centerboxlogin">
                    <div className="row">
                     <div className="playerbox">
                         <Player>

@@ -100,6 +100,12 @@ class Test extends React.Component {
     }
 
     render() {
+        let statusStyle = 'StatusBoxRed'
+        switch(this.state.status) {
+            case 'A.C':
+                statusStyle = 'StatusBoxGreen'
+                break;
+        }
         //console.log(this.props)
         //console.log(this.state.loading)
         return (
@@ -123,9 +129,9 @@ class Test extends React.Component {
                     <BottomBox>
                         <P>SCORE:</P>
                         <div className="ScoreBox">{this.state.score}</div>
-                        <button className='btn buttest'><Link to={'/Coding/' + this.state.qid}>RETRY</Link></button>
+                        <Link to={'/Coding/' + this.state.qid}><button className='btn buttest'>RETRY</button></Link>
                         <P>STATUS:</P>
-                        <div className="StatusBox">{this.state.status}</div>
+                        <div className={statusStyle}>{this.state.status}</div>
 
                     </BottomBox>
                 </MainBoxleft>

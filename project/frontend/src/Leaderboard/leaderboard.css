@@ -1,4 +1,4 @@
-.navig{
+/* .navig{
     height:7vh;
     width: 100%;
     border: 0px solid black;
@@ -6,17 +6,18 @@
     color: white;
     display: flex;
     align-items: center;   
-}
+} */
 
-.leader{
+.leader1{
   
     color: white;
-    border: 0px solid green;
+    border: 0px solid red;
     height:86vh;
     width:100%;
   }
   .a{
     height: 86vh;
+    width: 100%;
     border: solid 0px red;
   }
   .Leaderbox{
@@ -53,15 +54,16 @@
     justify-content: center;
     border: 0px solid black;
   } 
-  .ltableup {
-    background: rgba(0, 0, 0, 0.4);
+  .ltableuplead{
     width: 90%;
     height: 5vh;
     margin-left: 5vw;
     color: rgba(185, 223, 223, 0.911);
-    border-radius:3vh;
+    border-top-right-radius:2vh;
+    border-top-left-radius:2vh;
     background-color: rgba(0, 0, 0, 0.712);
     font-size: 2.6vh;
+    border:0px solid black;
 
   }
   .ltabledown {
@@ -72,29 +74,35 @@
     overflow: auto;
     color: rgb(224, 224, 224);
     border-radius:2vh;
-    font-size:2vh;
+    font-size:2.4vh;
+    border-radius:0px;
+    border: 0px solid red;  
+  
+
 
           
   }
   .leadertable{
     height: 60vh;
     overflow-y: auto;
+    border-radius: 0px;
+
 
   }
   .leadertable::-webkit-scrollbar{
       display: none;
   }
   .butleadbox{
-    margin-left: 42vw;
+    margin-left: 41vw;
   }
-  .box{
+  .boxlead{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 5.5vh;
     border: 0px solid green;
   }
-  .but2{
+  .but9{
     height: 5vh;
     width: 10vw;
     display: flex;
@@ -102,14 +110,15 @@
     align-items: center;
     background-color: rgb(1, 105, 105);
     color: white;
-    border: 0px solid black;
+    border: 0px solid yellow  ;
     border-radius: 5px; 
+    margin-right: 3vw;
     /* box-shadow: 2px 1px 0px 1px black; */
   
   }
   th,
   td {
-    height: 40vh;
+    height: 11vh;
   }
   .teamrank {
     font-size: 2.6vh;
@@ -117,7 +126,8 @@
     margin-left: 2vw;
     padding-left: 4vw;
     width: 12vw;
-    height: 7vh;
+    height: 0vh;
+    border: 0px solid green;
   }
   .teamame {
     font-size: 2.6vh;
@@ -137,20 +147,26 @@
     margin-left: 2vw;
     padding-left: 5vw;
     width: 12vw;
+
   }
   .teamamed {
-    width: 18vw;
+    width: 17vw;
+    padding-left: 1vw;
+
  }
-  .quesd {
+  .questd {
     width: 8vw;
+    padding-left: 0.8vw;
 
   }
   .totalscd{
     width: 10vw;
+    padding-left: 1vw;
+
   }
  
   .line1{
-      border-bottom: 4px solid rgb(0, 0, 0); 
+      border-bottom: 0px solid rgb(0, 0, 0); 
       margin-top: 2vh;  
   }
  

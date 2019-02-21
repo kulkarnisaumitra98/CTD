@@ -48,19 +48,20 @@
     justify-content: center;
     border: 0px solid green;
   }
-  .Submission{
+  .Submissionsub{
     height: 76vh;
     width: 100%;
     justify-content: center;
     border: 0px solid black;
   } 
-  .tableup {
-    background: rgba(0, 0, 0, 0.575);
+  .tableupsub {
+    background: rgba(0, 0, 0, 0.794);
     width: 90%;
     height: 5vh;
     margin-left: 5vw;
     color: rgba(185, 223, 223, 0.911);
-    border-radius:3vh;
+    border-top-right-radius:3vh;
+    border-top-left-radius: 3vh;
     font-size: 2.6vh;
   }
   .tabledown {
@@ -70,7 +71,6 @@
     margin-left: 5vw;
     overflow: auto;
     color: rgb(224, 224, 224);
-    border-radius:2vh;
 
           
   }
@@ -83,7 +83,7 @@
       display: none !important;
   }
   .butbox{
-    margin-left: 30.3vw;
+    margin-left: 30.7vw;
   }
   .box{
     display: flex;
@@ -93,22 +93,11 @@
     border: 0px solid green;
     margin-left: 3vw;
   }
-  .butbut{
-    height: 5vh;
-    width: 10vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(1, 105, 105);
-    color: white;
-    border: 1px solid black;
-    box-shadow: 2px 2px black;;
-    border-radius: 5px; 
-  }
-  .butbut:hover{
+  
+  /* .butbut123:hover{
     padding-left: 1px;
   }
-  .butbut:after{
+  .butbut123:after{
       content: '»';
       color: white;
       position: absolute;
@@ -118,16 +107,16 @@
       transition: 0.5s;
       font-size: 2.5vh;
   }
-  .butbut:hover:after{
+  .butbut123:hover:after{
     opacity: 1;
     
-  }
+  } */
   
   th,
   td {
     height: 10vh;
   }
-  .rank {
+  .ranksub {
     justify-content: center;
     border:0px solid black;
     width:15vw;
@@ -146,7 +135,7 @@
   .timeSubd {
     border:0px solid black;
     width:20vw;
-    padding-left: 9.5vw;
+    padding-left: 8.5vw;
     font-size: 2.3vh;
     font-weight: 400;
   }
@@ -176,13 +165,21 @@
 
   }
   .borderline{
-      border-bottom: 1px solid rgb(204, 204, 204);  
+      border-bottom: 0px solid rgb(0, 0, 0);  
       width:10%;
       
   }
-  .butbut{
+  .butbut123{
     height: 6vh;
-    width: 9vw;
+    width: 9vw; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(1, 105, 105);
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 2px 2px black;
 
   }
   .prog{

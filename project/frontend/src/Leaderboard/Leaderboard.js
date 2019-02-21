@@ -33,7 +33,7 @@ class Leaderboard extends React.Component {
     render() {
         return (
             <div>
-                <section className="container-fluid leader">
+                <section className="container-fluid leader1">
                     <div className="a">
                         <div className="Leaderbox">
                             <div className="heading text-center">
@@ -43,7 +43,7 @@ class Leaderboard extends React.Component {
 
                         <div className="LeaderLeaderbox">
                             <div className="Leaderboard">
-                                <table className="ltableup">
+                                <table className="ltableuplead">
                                     <tbody>
                                         <tr className="line1">
                                             <th className="teamrank">Rank</th>
@@ -84,6 +84,7 @@ class Leaderboard extends React.Component {
                             </div>
                         </div>
                     </div>
+
                 </section>
                 <Footer />
             </div>

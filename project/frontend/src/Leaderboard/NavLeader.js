@@ -8,10 +8,10 @@ const Navbar = () => {
     return (
         <div className="headhere">LEADERBOARD
                     <div className="row butleadbox">
-                <div className="box">
-                    <NavLink to="/Questions"><button className="btn but2">QUESTION HUB</button></NavLink>
+                <div className="boxlead">
+                    <NavLink to="/Questions"><button className="btn but9">QUESTION HUB</button></NavLink>
                 </div>
-                <div className="box">
+                <div className="boxlead">
                     <LogOut />
                 </div>
             </div>

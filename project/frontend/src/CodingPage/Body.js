@@ -128,7 +128,7 @@ class Body extends React.Component {
 
                             <div className="custom-file choose" >
                                 <input type="file" className="custom-file-input choosefile" id="fileToLoad" name="filename" onChange={this.loadFileAsText} />
-                                <label className="custom-file-label" htmlFor="customFile" >Choose file</label>
+                                <label className="custom-file-label" htmlFor="customFile" style={{backgroundColor:"rgba(0,0,0,0.6)",color:"white",border:"none"}} >Choose file</label>
                             </div>
                         </div>
                         <div className="row insidecenterbody mt-3">
