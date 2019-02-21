@@ -1,0 +1,87 @@
+.teamname123{
+    color:rgb(210, 248, 243);
+    height: 10vh;
+    justify-content: center;
+    width:40%;
+    display:flex;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius:10px;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-left: 30%;
+}
+
+.cache{
+    height: 25vh;
+    border: 0px solid red;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 4vh;
+}
+
+.rankres{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius:10px; 
+    text-align: center;
+    font-size: 30px;
+    color:rgb(210, 248, 243);   
+    height: 20vh;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width:16vw;
+    padding-top: 2vh;
+
+}
+
+.scoreit{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius:10px; 
+    text-align: center;
+    font-size: 30px;
+    color:rgb(210, 248, 243);
+    height: 20vh;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width:16vw;
+    margin-left: 20vw;
+
+}
+
+.content12{
+    background-color:none; 
+    border-radius:10px; 
+    font-size: 30px;
+    margin-top: 3vh;
+    color:whitesmoke;
+
+
+}
+.bruh{
+    height:20vh;
+    /* border: 2px solid red; */
+    margin-top: 5vh;
+    width:100%;  
+    
+}
+.leaderres{
+    margin-top: 7.5vh;
+    height:35vh;
+    /* border: 2px solid red; */
+    width:100%;
+}
+.table{
+    color:white;
+    background-color: black;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+    width:60vw;
+    margin-left: 20vw;
+}
+
+
+ 
+    .table-row{
+        height:0.75vh;
+        width:60vw;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
