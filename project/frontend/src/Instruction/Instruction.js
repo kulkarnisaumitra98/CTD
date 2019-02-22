@@ -22,7 +22,7 @@ class Instruction extends React.Component {
                         </div>
                     </div>
                     <div className="proceed">
-                        <Link to="/Question"><button className="btn butpro">PROCEED</button></Link>
+                        <Link to="/Questions"><button className="btn butpro">PROCEED</button></Link>
                     </div>
                 </div>
                 <Footer/>

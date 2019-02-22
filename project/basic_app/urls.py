@@ -20,6 +20,8 @@ urlpatterns =[
     path('getTime/', views.timer),
     path('Testcase/<int:id>', views.questions),
     path('Result/', views.result, name='Result'),
+    path('instruction/', views.instructions, name='instructions'),
+    path('templogout/', views.templogout),
     path('', views.waiting),
 
 ]

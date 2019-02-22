@@ -9,6 +9,7 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 #from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 
@@ -81,7 +82,7 @@ def startTimer(request):
             global endtime
             global starttime
             starttime = time1
-            endtime = time + 7200   # 7200 defines our event time
+            endtime = time + 120  # 7200 defines our event time
 
             return HttpResponse('<p>Good to go</p>')
         else:
@@ -116,11 +117,18 @@ def startTimer(request):
 #             return render(request, 'basic_app/waiting.html')
 
 
-def waiting(request):
+def result(request):
     return render(request, 'frontend/index.html', {})
 
 
-def result(request):
+def waiting(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('QuestionHub'))
+    else:
+        return render(request, 'frontend/index.html', {})
+
+
+def testcase(request):
     return render(request, 'frontend/index.html', {})
 
 
@@ -173,14 +181,14 @@ def questions(request, id=1):
 
                 user.attempts += 1
 
-                fo = open('{}/{}/question{}/{}{}.{}'.format(path, username, id, username, user.attempts, option), 'w')
+                fo = open('{}/{}/question{}/{}{}{}.{}'.format(path, username, id, username, id, user.attempts, option), 'w')
                 fo.write(some_text)     # writes .c file
                 fo.close()
 
                 dictt = {}
 
-                if os.path.exists('{}/{}/question{}/{}{}.{}'.format(path, username, id, username, user.attempts, option)):
-                    ans = os.popen("python data/main.py " + "{}/{}/question{}/{}{}.{}".format(path, username, id, username, user.attempts, option) + " " + username + " " + str(id) + " " + juniorSenior + " " + str(user.attempts)).read()
+                if os.path.exists('{}/{}/question{}/{}{}{}.{}'.format(path, username, id, username, id, user.attempts, option)):
+                    ans = os.popen("python data/main.py " + "{}/{}/question{}/{}{}{}.{}".format(path, username, id, username, id, user.attempts, option) + " " + username + " " + str(id) + " " + juniorSenior + " " + str(user.attempts)).read()
                     # sandbox returns the 2 digit code of five testcases as a single integer of 10 digit number
                     ans = int(ans)  # saves 99'99'89'99'50 as 9999899950 these ae sandbox returned codes of 5 testcases
                     print("THE SANDBOX CODE IS", ans)
@@ -195,7 +203,9 @@ def questions(request, id=1):
                         70: 4,  # Abnormal termination
                         20: 5,  # custom error
                         60: 6,  # Run time error
-                        40: 7   # Motherfucking code
+                        40: 7,  # Motherfucking code
+                        30: 8,  # CoreDump
+
                     }
 
                     user.score = 0
@@ -254,7 +264,11 @@ def questions(request, id=1):
 
                     if tcOut[0] == 7 or tcOut[1] == 7 or tcOut[2] == 7 or tcOut[3] == 7 or tcOut[4] == 7:
                         rte_flag = True
-                        status = "RTE"   # strings to display on console
+                        status = "TLE"   # strings to display on console
+
+                    if tcOut[0] == 8 or tcOut[1] == 8 or tcOut[2] == 8 or tcOut[3] == 8 or tcOut[4] == 8:
+                        rte_flag = True
+                        status = "RTE"  # strings to display on console
 
                     if UserQ.objects.filter(user = user.user, Qid=id):
                         if UserQ.objects.get(user=user.user, Qid=id).score <= user.score:
@@ -302,6 +316,10 @@ def questions(request, id=1):
                         user.uacsubtime = '{}:{}:{}'.format(hour, min, sec)
 
                     user.save()
+
+                    for i in range(0, 5):
+                        if os.path.exists('{}/{}/question{}/output{}{}.txt'.format(path, username, id, user.attempts, (i+1))):
+                            os.system('rm -rf {}/{}/question{}/output*'.format(path, username, id))
 
                     dictt = {'e':cerror,
                              't':nowTime(),
@@ -404,14 +422,15 @@ def leader(request):
 
 def instructions(request):
     if request.user.is_authenticated:
+        print("abc")
         try:
             user = UserProfileInfo.objects.get(user=request.user)
         except UserProfileInfo.DoesNotExist:
             user = UserProfileInfo()
         if user.flag:   # if user has before visited question panel and tries to come back
-            return HttpResponseRedirect(reverse('question_panel'))
+            return HttpResponseRedirect(reverse('QuestionHub'))
         if request.method == "POST":
-            return HttpResponseRedirect(reverse('question_panel'))
+            return HttpResponseRedirect(reverse('QuestionHub'))
         return render(request, 'frontend/index.html')
     else:
         return HttpResponseRedirect(reverse('register'))
@@ -444,44 +463,60 @@ def user_logout(request):
 
 
 def register(request):
-    if request.method == 'POST':
-        body_unicode = request.body.decode('utf-8')
-        Postobject = json.loads(body_unicode)
-
-        username = Postobject['username']
-        password = Postobject['password']
-        name1 = Postobject['name1']
-        name2 = Postobject['name2']
-        phone1 = Postobject['phone1']
-        phone2 = Postobject['phone2']
-        level = Postobject['level']
-
-        b = UserProfileInfo()
-        b.user = User.objects.create_user( username=username, password=password)
-        b.name1 = name1
-        b.name2 = name2
-        b.phone1 = phone1
-        b.phone2 = phone2
-        b.level = level
-        login(request, b.user)
-        b.save()
-
-        if not os.path.exists('{}/{}/'.format(path, b.user.username)):  # make folders of user
-            b.attempts = 0  # this line should be exceuted only once
-            os.system('mkdir {}/{}'.format(path, b.user.username))
-
-            for i in range(1, 7):
-                os.system('mkdir {}/{}/question{}'.format(path, username, i))
-
-        b.save()
-
-        serializer = UserSerializers(b)
-
-        #print(serializer.data)
-
-        return JsonResponse(serializer.data)
+    if request.user.is_authenticated:
+        try:
+            user = UserProfileInfo.objects.get(user=request.user)
+        except UserProfileInfo.DoesNotExist:
+            user = UserProfileInfo()
+        if not user.flag:  # if not visited questions yet then:
+            return HttpResponseRedirect(reverse('instructions'))
+        return HttpResponseRedirect(reverse('QuestionHub'))
     else:
-        return render(request, 'frontend/index.html')
+        try:
+            global _flag
+            if not _flag:  # if hits url for register in waiting page
+                return HttpResponseRedirect(reverse('waiting'))
+            if request.method == 'POST':
+                body_unicode = request.body.decode('utf-8')
+                Postobject = json.loads(body_unicode)
+
+                username = Postobject['username']
+                password = Postobject['password']
+                name1 = Postobject['name1']
+                name2 = Postobject['name2']
+                phone1 = Postobject['phone1']
+                phone2 = Postobject['phone2']
+                level = Postobject['level']
+
+                b = UserProfileInfo()
+                b.user = User.objects.create_user( username=username, password=password)
+                b.name1 = name1
+                b.name2 = name2
+                b.phone1 = phone1
+                b.phone2 = phone2
+                b.level = level
+                login(request, b.user)
+                b.save()
+
+                if not os.path.exists('{}/{}/'.format(path, b.user.username)):  # make folders of user
+                    b.attempts = 0  # this line should be exceuted only once
+                    os.system('mkdir {}/{}'.format(path, b.user.username))
+
+                    for i in range(1, 7):
+                        os.system('mkdir {}/{}/question{}'.format(path, username, i))
+
+                b.save()
+
+                serializer = UserSerializers(b)
+
+                #print(serializer.data)
+
+                return JsonResponse(serializer.data)
+            else:
+                return render(request, 'frontend/index.html')
+        except IntegrityError:
+            return HttpResponse("you have already been registered.")
+
 
 
 def sub(request, id=1):
@@ -544,7 +579,7 @@ def loadbuff(request, pk):
     username = request.user.username
     user = UserProfileInfo.objects.get(user=request.user)
 
-    file = '{}/{}/question{}/{}{}.{}'.format(path, username, pk, username, user.attempts,
+    file = '{}/{}/question{}/{}{}{}.{}'.format(path, username, pk, username, pk, user.attempts,
                                                            user.option)
     f = open(file, "r")
     text = f.read()
@@ -579,3 +614,7 @@ def elogin(request):    # emergency login
 
 
 # COMMENTS COURTESY OF SAUMITRA KULKARNI :P
+
+def templogout(request):
+    logout(request)
+    return HttpResponse("fuckoff")
