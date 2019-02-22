@@ -10,7 +10,6 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-#from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 
 import datetime
@@ -56,6 +55,7 @@ class SubmissionDetail(generics.RetrieveUpdateDestroyAPIView):
 
 endtime = 0
 _flag = False
+freezed = None
 
 starttime = ""
 
@@ -82,39 +82,11 @@ def startTimer(request):
             global endtime
             global starttime
             starttime = time1
-            endtime = time + 120  # 7200 defines our event time
+            endtime = time + 12  # 7200 defines our event time
 
             return HttpResponse('<p>Good to go</p>')
         else:
             return HttpResponse("Invalid login details supplied.")
-
-
-# def waiting(request):   # this view gets called every 5 seconds
-#     if request.user.is_authenticated:
-#         return HttpResponseRedirect(reverse('question_panel'))
-#     else:
-#         now = datetime.datetime.now()
-#         min = now.minute
-#         hour = now.hour
-#         sec = min * 60 + hour * 60 * 60
-#         time = str(hour)+":" + str(min)
-#
-#         global starttime    # has current time + 1 min time in string format
-#
-#         if not starttime == "": # condition to handle if user types url of waiting page from register page
-#             _time_string = starttime.split(":")
-#             _min = int(_time_string[1]) # extract the hour and min for later use
-#             _hour = int(_time_string[0])
-#             _sec = _hour * 60 * 60 + _min * 60  # the hour and min in seconds
-#             if sec > _sec:  #if current time of hr:min in seconds greater than starttime ka seconds(hr:min conversion)
-#                             # so he should not go back to waiting page once he goes to register page
-#                 return HttpResponseRedirect(reverse('register'))
-#
-#         if time == starttime:   # since waiting page refreshes every 5 seconds when the current time equates to
-#                                 # time defined when timer was hit i.e +1 the curr time then :
-#             return HttpResponseRedirect(reverse('register'))
-#         else:
-#             return render(request, 'basic_app/waiting.html')
 
 
 def result(request):
@@ -291,8 +263,6 @@ def questions(request, id=1):
                     user.total = user.totalScore // 6
                     user.save()
 
-                    Q = Questions.objects.get(id=id)    # current question object
-
                     for_count = 0
 
                     for i in testlist:
@@ -301,8 +271,6 @@ def questions(request, id=1):
 
                     if for_count == 5:
                         status = 'A.C'
-                        Q.submission += 1      # if score 100 then increase successful subs for that question by 1
-                        Q.save()
 
                     else:
                         if not (tle_flag or rte_flag or abt_flag or cte_flag):
@@ -348,6 +316,11 @@ def question_panel(request):
 
             all_user = UserProfileInfo.objects.all()
 
+            all_question = Questions.objects.all()
+
+            for i in all_question:
+                i.submission = 0
+
             accuracy_count = [0] * 6        # number of users who have 100 score for each 6 questions
             user_sub_count = [0] * 6        # number of users who have atleast one submissions
             percentage_accuracy = [0] * 6   # stores accuracy of each question
@@ -357,6 +330,8 @@ def question_panel(request):
                     if UserQ.objects.filter(Qid=i+1, user=user.user):
                         user_sub_count[i] += 1
                         if UserQ.objects.get(Qid=i+1, user=user.user).score == 100:
+                            all_question[i].submission += 1
+                            all_question[i].save()
                             accuracy_count[i] += 1
 
             for i in range(0, 6):
@@ -364,8 +339,6 @@ def question_panel(request):
                     percentage_accuracy[i] = int((accuracy_count[i] / user_sub_count[i]) * 100)
                 except ZeroDivisionError:
                     percentage_accuracy[i] = 0  # since for the first get request no submissions so 0/0 error
-
-            all_question = Questions.objects.all()
 
             a1 = 0
 
@@ -388,32 +361,47 @@ def question_panel(request):
         return redirect(reverse('register'))
 
 
+def leaderResponse(b):
+    users = [
+    ]
+
+    for user in b:
+        templist = [0] * 6
+        for i in range(6):
+            if UserQ.objects.filter(Qid=i + 1, user=user.user):
+                templist[i] = UserQ.objects.get(Qid=i + 1, user=user.user).score
+
+        users.append({
+            'username': user.user.username,
+            'totalScore': user.totalScore,
+            'questionScores': templist
+        })
+
+    response_data = {
+        'users': users
+    }
+
+    return response_data
+
+
 def leader(request):
     if request.user.is_authenticated:
         if request.is_ajax():
+            if nowTime() <= 900:
+                global freezed
+                if not freezed:
+                    print('Not frozen')
+                    temp = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
+                    temprev = temp.reverse()
+                    freezed = leaderResponse(temprev)
+                else:
+                    print('freezed')
+                    return JsonResponse(freezed)
+
             a = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
             b = a.reverse()
 
-            users = [
-            ]
-
-            for user in b:
-                templist = [0] * 6
-                for i in range(6):
-                    if UserQ.objects.filter(Qid=i + 1, user=user.user):
-                        templist[i] = UserQ.objects.get(Qid=i + 1, user=user.user).score
-
-                users.append({
-                    'username' : user.user.username,
-                    'totalScore': user.totalScore,
-                    'questionScores': templist
-                })
-
-            response_data ={
-                'users' : users
-            }
-
-            return JsonResponse(response_data)
+            return JsonResponse(leaderResponse(b))
         else:
             return render(request, 'frontend/index.html')
     else:
@@ -518,7 +506,6 @@ def register(request):
             return HttpResponse("you have already been registered.")
 
 
-
 def sub(request, id=1):
     if request.user.is_authenticated:
         if request.is_ajax():
@@ -537,28 +524,6 @@ def sub(request, id=1):
             return render(request, 'frontend/index.html')
     else:
         return redirect(reverse('register'))
-
-
-def retry(request, id=1):
-    if request.method == "GET":
-        user = UserProfileInfo.objects.get(user=request.user)
-        a = Submissions.objects.filter(user=request.user, qid=user.question_id) # create sub for that question for that user
-        array = []  # all codes subs for that questions
-        idd = []    # for qids
-
-        for i in a:
-            array.append(i.sub) # i.sub is code written by user
-            idd.append(i.qid)
-        var = Questions.objects.all()
-
-        f = idd[int(id)-1]
-        q = var[int(f)-1]   # extract question from the url id
-        question = q.questions  # text of the question
-        dict = {'sub': array[int(id)-1], 'question': question, 's': user.score, 't': nowTime()}
-
-        return render(request, 'basic_app/Codingg.html', context=dict)
-    if request.method == "POST":
-        return questions(request)
 
 
 def checkuser(request): # ajax validation of username

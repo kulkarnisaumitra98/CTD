@@ -23,6 +23,12 @@ class Timer extends Component {
 
         x -= 1
 
+        if(this.state.time <= 0) {
+            clearInterval(this.x)
+
+            this.props.history.push('/Result')
+        }
+
         this.setState({
             time:x,
             stringTime:stringTime
@@ -33,14 +39,6 @@ class Timer extends Component {
 
     componentDidMount(){
         this.interval = setInterval(() => this.calTimer(this.state.time),1000)
-    }
-
-    componentWillUnmount() {
-        if(this.state.time <= 0) {
-            clearInterval(this.x)
-
-            this.props.history.push('/Result')
-        }
     }
 
 

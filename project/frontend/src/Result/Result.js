@@ -5,7 +5,6 @@ import './result.css'
 
 const Centerbox = styled.div`
 height: 86vh;
-background-image: url("alt1.jpg");
 width: 100%;
 justify-content: center;
 // border: 1px solid red;

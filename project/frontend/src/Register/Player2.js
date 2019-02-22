@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom';
 import './player.css'
 import Footer from './Footer';
 import './NCC.png'
