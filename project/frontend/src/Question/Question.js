@@ -1,13 +1,84 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
+import { css } from '@emotion/core';
+import { ClipLoader,BarLoader,PropagateLoader,PulseLoader} from 'react-spinners';
+
+
+const Navig = styled.div`
+height:7vh;
+background-color: black;
+width: 100%;
+//  border: 1px solid red;
+color:white;
+`;
+const Centerbox = styled.div`
+height: 86vh;
+width: 100%;
+// border: 1px solid red;
+display: flex;
+       align-content: center;
+       align-items: center;
+`;
+const BottomBox = styled.div`
+color:white;
+height: 7vh;
+font-size: 3vh;
+font-weight: unset;
+justify-content: center;
+text-align: center;
+background-color: black;
+width:100%;
+//  border: 1px solid red;
+
+`;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
+
+
 
 const question = (props) => {
-
-    const question = props.promise ? props.question : (
-            <div>
-
-            </div>
-        )
+    const loader = (
+        <div className='clip'>
+            <ClipLoader
+                css={override}
+                sizeUnit={"px"}
+                size={27}
+                color={'#003366'}
+                loading={true}
+            />
+        </div>
+    )
+    
+    const questionAcc = props.promise ? props.question.accuracy : 0
+    const questionSub = props.promise ? props.question.submission : loader
+    const questionTitle = props.promise ? props.question.questionTitle : loader
+    const questionAccuracyBar = props.promise ? (
+        <div className="progress">
+                            <div
+                                className="progress-bar progress-bar-success"
+                                role="progressbar"
+                                aria-valuenow="60"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                style={{ width: questionAcc + "%" }}
+                            >
+                            </div>
+                        </div>
+    ) : (
+        <BarLoader
+            css={override}
+            sizeUnit={"vh"}
+            width={100}
+            height={8}
+            color={'#0000FF'}
+            sloading={true}
+        />
+    )
+    
 
     return (
     <NavLink to={'/Coding/' + props.id} style={{textDecoration:"none"}}>
@@ -19,34 +90,20 @@ const question = (props) => {
 
                         </div>
                         <div className="qhead">
-                            {question.questionTitle}
+                            {questionTitle}
                         </div>
 
                         <div className="attempts mt-1">
                             SUCCESSFUL SUBMISSIONS:
                             <br/>
-                            {question.submission}
-                        </div>
-                
-
-
-
+                            {questionSub}
+                        </div>        
                     <div className="accuracy row">
                     <div className="accutext">ACCURACY</div>
 
 
                         <div className="insideaccu">
-                        <div className="progress">
-                            <div
-                                className="progress-bar progress-bar-success"
-                                role="progressbar"
-                                aria-valuenow="60"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                style={{ width: question.accuracy + "%" }}
-                            >
-                            </div>
-                        </div>
+                            {questionAccuracyBar}
                         </div>
                     </div>
 

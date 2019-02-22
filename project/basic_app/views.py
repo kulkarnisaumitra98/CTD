@@ -82,7 +82,7 @@ def startTimer(request):
             global endtime
             global starttime
             starttime = time1
-            endtime = time + 12  # 7200 defines our event time
+            endtime = time + 1000  # 7200 defines our event time
 
             return HttpResponse('<p>Good to go</p>')
         else:
@@ -151,16 +151,26 @@ def questions(request, id=1):
 
                 testlist = ['FAIL'] * 5
 
-                user.attempts += 1
+                if UserQ.objects.filter(user=user.user, Qid=id):
 
-                fo = open('{}/{}/question{}/{}{}{}.{}'.format(path, username, id, username, id, user.attempts, option), 'w')
+                    u = UserQ.objects.filter(user=user.user, Qid=id)[0]
+                    u.attempt += 1
+                    u.save()
+                else:
+                    u = UserQ(Qid=id, user=user.user)
+                    u.attempt += 1
+                    u.save()
+
+                filename = '{}/{}/question{}/{}{}{}.{}'.format(path, username, id, username, id, u.attempt, option)
+
+                fo = open(filename, 'w')
                 fo.write(some_text)     # writes .c file
                 fo.close()
 
                 dictt = {}
 
-                if os.path.exists('{}/{}/question{}/{}{}{}.{}'.format(path, username, id, username, id, user.attempts, option)):
-                    ans = os.popen("python data/main.py " + "{}/{}/question{}/{}{}{}.{}".format(path, username, id, username, id, user.attempts, option) + " " + username + " " + str(id) + " " + juniorSenior + " " + str(user.attempts)).read()
+                if os.path.exists(filename):
+                    ans = os.popen("python data/main.py " + filename + " " + username + " " + str(id) + " " + juniorSenior + " " + str(u.attempt)).read()
                     # sandbox returns the 2 digit code of five testcases as a single integer of 10 digit number
                     ans = int(ans)  # saves 99'99'89'99'50 as 9999899950 these ae sandbox returned codes of 5 testcases
                     print("THE SANDBOX CODE IS", ans)
@@ -242,16 +252,12 @@ def questions(request, id=1):
                         rte_flag = True
                         status = "RTE"  # strings to display on console
 
-                    if UserQ.objects.filter(user = user.user, Qid=id):
+                    if UserQ.objects.filter(user=user.user, Qid=id):
                         if UserQ.objects.get(user=user.user, Qid=id).score <= user.score:
                             q = UserQ.objects.get(user=user.user, Qid=id)
                             q.score = user.score
                             q.save()
                             UserQ.objects.get(user=user.user, Qid=id).save()
-                    else:
-                        q = UserQ(Qid=id, user=user.user)
-                        q.score = user.score
-                        q.save()
 
                     user.save()
 
@@ -286,7 +292,7 @@ def questions(request, id=1):
                     user.save()
 
                     for i in range(0, 5):
-                        if os.path.exists('{}/{}/question{}/output{}{}.txt'.format(path, username, id, user.attempts, (i+1))):
+                        if os.path.exists('{}/{}/question{}/output{}{}.txt'.format(path, username, id, u.attempt, (i+1))):
                             os.system('rm -rf {}/{}/question{}/output*'.format(path, username, id))
 
                     dictt = {'e':cerror,
@@ -300,7 +306,7 @@ def questions(request, id=1):
         else:
             return render(request, 'frontend/index.html')
     else:
-         return redirect(reverse('register'))
+        return redirect(reverse('register'))
 
 
 def question_panel(request):
@@ -543,9 +549,9 @@ def loadbuff(request, pk):
     response_data = {}
     username = request.user.username
     user = UserProfileInfo.objects.get(user=request.user)
-
-    file = '{}/{}/question{}/{}{}{}.{}'.format(path, username, pk, username, pk, user.attempts,
-                                                           user.option)
+    u = UserQ.objects.filter(user=user.user, Qid=pk)[0]
+    file = '{}/{}/question{}/{}{}{}.{}'.format(path, username, pk, username, pk, u.attempt,
+                                               user.option)
     f = open(file, "r")
     text = f.read()
 

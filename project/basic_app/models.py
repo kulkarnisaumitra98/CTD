@@ -18,7 +18,6 @@ class UserProfileInfo(models.Model):
     score = models.IntegerField(default=0)     # temporary score of a question
     totalScore = models.IntegerField(default=0)     # Total question score
     total = models.IntegerField(default=0)          # percentage score
-    attempts = models.IntegerField(default=0)
 
     phone1 = models.CharField(max_length=10)
     phone2 = models.CharField(max_length=10)
@@ -46,3 +45,4 @@ class UserQ(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     Qid = models.IntegerField(default=0)
     score = models.IntegerField(default=0)
+    attempt = models.IntegerField(default=0)
