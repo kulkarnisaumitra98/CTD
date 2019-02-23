@@ -82,7 +82,7 @@ def startTimer(request):
             global endtime
             global starttime
             starttime = time1
-            endtime = time + 1000  # 7200 defines our event time
+            endtime = time + 7200  # 7200 defines our event time
 
             return HttpResponse('<p>Good to go</p>')
         else:
@@ -180,12 +180,12 @@ def questions(request, id=1):
 
                         10: 0,  # correct answer code
                         99: 1,  # wrong answer code
-                        50: 2,  # System commands
+                        50: 2,  # time limit exceeded
                         89: 3,  # compile time error
                         70: 4,  # Abnormal termination
-                        20: 5,  # custom error
-                        60: 6,  # Run time error
-                        40: 7,  # Motherfucking code
+                        20: 5,  # system commands
+                        60: 6,  # Run time error (SEGV, divide by 0)
+                        40: 7,  # Disk override (stdout file size)
                         30: 8,  # CoreDump
 
                     }
