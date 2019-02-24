@@ -130,6 +130,7 @@
   th,
   td {
     height: 11vh;
+    border: 1px solid white
   }
   .teamrank {
     font-size: 2.6vh;
@@ -181,3 +182,14 @@
       margin-top: 2vh;  
   }
  
+.Acscore{
+  height: 9.5vh;
+  padding-top: 2vw;
+  border: 1px solid green;
+}
+
+.Actime{
+  height: 1.5vh;
+  font-size: 1.7vh;
+  border: 1px solid green;
+}

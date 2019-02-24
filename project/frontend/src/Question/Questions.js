@@ -38,15 +38,18 @@ class Questions extends React.Component {
                         <Question 
                             id='1' 
                             question={this.state.questions[0]} 
-                            promise={this.state.promise}/>
+                            promise={this.state.promise}
+                            />
                         <Question 
                             id='2' 
                             question={this.state.questions[1]} 
-                            promise={this.state.promise}/>
+                            promise={this.state.promise}
+                            />
                         <Question 
                             id='3' 
                             question={this.state.questions[2]} 
-                            promise={this.state.promise}/>
+                            promise={this.state.promise}
+                            />
                         
                         {/* {this.state.questions.slice(0, 3).map(
                             (question) => {
@@ -66,15 +69,18 @@ class Questions extends React.Component {
                         <Question 
                             id='4' 
                             question={this.state.questions[3]} 
-                            promise={this.state.promise}/>
+                            promise={this.state.promise}
+                            />
                         <Question 
                             id='5' 
                             question={this.state.questions[4]} 
-                            promise={this.state.promise}/>
+                            promise={this.state.promise}
+                            />
                         <Question 
                             id='6' 
                             question={this.state.questions[5]} 
-                            promise={this.state.promise}/>
+                            promise={this.state.promise}
+                            />
                         
                         {/* {this.state.questions.slice(3, 7).map(
                             (question) => {

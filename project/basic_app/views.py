@@ -297,6 +297,7 @@ def questions(request, id=1):
                     subb.save()
                     if subb.testCaseScore == 100:
                         user.uacsubtime = '{}:{}:{}'.format(hour, min, sec)
+                        user.latestAcQid = id
 
                     user.save()
 
@@ -386,6 +387,8 @@ def leaderResponse(b):
 
     for user in b:
         templist = [0] * 6
+        actime = user.uacsubtime
+        acQuid = user.latestAcQid
         for i in range(6):
             if UserQ.objects.filter(Qid=i + 1, user=user.user):
                 templist[i] = UserQ.objects.get(Qid=i + 1, user=user.user).score
@@ -393,7 +396,9 @@ def leaderResponse(b):
         users.append({
             'username': user.user.username,
             'totalScore': user.totalScore,
-            'questionScores': templist
+            'questionScores': templist,
+            'acQid': acQuid,
+            'acTime': actime,
         })
 
     response_data = {
@@ -415,6 +420,7 @@ def leader(request):
                     freezed = leaderResponse(temprev)
                 else:
                     print('freezed')
+
                     return JsonResponse(freezed)
 
             a = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
@@ -541,7 +547,6 @@ def sub(request, id=1):
 
             a = Submissions.objects.filter(user=request.user, que=Questions.objects.get(id=id)) # create sub for that question for that user
             # check models for clear picture
-
             serializer = SubmissionSerializers(a, many=True)
 
             data = JSONRenderer().render(serializer.data).decode('utf-8')

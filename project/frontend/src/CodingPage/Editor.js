@@ -38,8 +38,9 @@ class Editor extends React.Component {
   }
 
   componentDidMount() {
-    //console.log('Editor  Did mount')
+    console.log('Editor  Did mount')
     const editor = this.ace
+    editor.editor.$blockScrolling = Infinity
     editor.editor.setValue(this.props.questionField,1)
     
   }

@@ -2,9 +2,8 @@ import React from 'react'
 import Footer from '../CodingPage/Footer';
 import axios from 'axios'
 import './submission.css'
-import NavSub from './NavSub';
 import {withRouter} from 'react-router-dom'
-import Nav from '../Nav'
+
 
 class Submission extends React.Component {
 

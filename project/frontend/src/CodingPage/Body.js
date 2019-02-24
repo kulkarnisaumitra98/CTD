@@ -46,7 +46,6 @@ class Body extends React.Component {
                     this.setState({
                         questiontext: res.data.questions,
                         questionTitle: res.data.questionTitle,
-                        questionField:res.data.fastio,
                         success: true,
                         score:res.data.totalScore
                     })

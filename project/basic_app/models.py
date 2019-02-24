@@ -27,6 +27,8 @@ class UserProfileInfo(models.Model):
     level = models.CharField(max_length=10)
     flag = models.BooleanField(default=False)
     uacsubtime = models.CharField(default=0, max_length=10)
+    latestAcQid = models.IntegerField(default=1)
+
 
     def __str__(self):
 

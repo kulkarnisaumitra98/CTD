@@ -2,6 +2,7 @@ import React from 'react'
 import Footer from '../CodingPage/Footer';
 import axios from 'axios'
 import './leaderboard.css'
+import Cell from './cell'
 
 class Leaderboard extends React.Component {
 
@@ -65,13 +66,48 @@ class Leaderboard extends React.Component {
                                                 <tr className="line1" key={user.username}>
                                                     <td className="teamrankd">{index + 1}</td>
                                                     <td className="teamamed">{user.username}</td>
-                                                    <td className="questd">{user.questionScores[0]}</td>
-                                                    <td className="questd">{user.questionScores[1]}</td>
-                                                    <td className="questd">{user.questionScores[2]}</td>
-                                                    <td className="questd">{user.questionScores[3]}</td>
-                                                    <td className="questd">{user.questionScores[4]}</td>
-                                                    <td className="questd">{user.questionScores[5]}</td>
-                                                    <td className="totalscd">{user.totalScore}</td>
+                                                    <td className="questd">
+                                                        <Cell 
+                                                            id="1" 
+                                                            acQid={user.acQid} 
+                                                            acTime={user.acTime} 
+                                                            score={user.questionScores[0]}/>
+                                                    </td>
+                                                    <td className="questd">
+                                                        <Cell 
+                                                            id="2" 
+                                                            acQid={user.acQid} 
+                                                            acTime={user.acTime} 
+                                                            score={user.questionScores[1]}/>
+                                                    </td>
+                                                    <td className="questd">
+                                                        <Cell 
+                                                            id="3" 
+                                                            acQid={user.acQid} 
+                                                            acTime={user.acTime} 
+                                                            score={user.questionScores[2]}/>
+                                                    </td>
+                                                    <td className="questd">
+                                                        <Cell 
+                                                            id="4" 
+                                                            acQid={user.acQid} 
+                                                            acTime={user.acTime} 
+                                                            score={user.questionScores[3]}/>
+                                                    </td>
+                                                    <td className="questd">
+                                                        <Cell 
+                                                            id="5" 
+                                                            acQid={user.acQid} 
+                                                            acTime={user.acTime} 
+                                                            score={user.questionScores[4]}/>
+                                                    </td>
+                                                    <td className="questd">
+                                                        <Cell 
+                                                            id="6" 
+                                                            acQid={user.acQid} 
+                                                            acTime={user.acTime} 
+                                                            score={user.questionScores[5]}/>
+                                                    </td>
 
                                                 </tr>
                                             )
