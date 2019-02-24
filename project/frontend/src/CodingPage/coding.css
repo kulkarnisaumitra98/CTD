@@ -71,6 +71,7 @@
     height: 7vh;
     font-size: 3vh;
     color: white;
+    
 }
 .scoreval{
     display: flex;
@@ -84,8 +85,9 @@
     background-color: #e5f8fa; 
     width: 13vw;
     height: 7vh;
-    font-size: 3vh;
-    font-weight: bolder;
+    font-size: 3.5vh;
+    font-weight: 600;
+    padding-top: 2vh;
     
     
 }
@@ -161,23 +163,24 @@
     align-items: center;
     font-size: 3vh;
     border: 0px solid green;
-    margin-left: 10vw;
+    margin-left: 8vw;
+    margin-top: -11vh;
 }
 .movbutleft{
-    margin-left:19.5vw;
+    margin-left:25.2vw;
 }
 .buttonboxcode{
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 5.5vh;
   border: 0px solid green;
   font-size: 2.09vh;
-  margin-left: 4vh;
+  margin-left: 2vh;
 }
 .but0{
     height: 5vh;
-    width: 10vw;
+    width: 11vw;
     display: flex;
     justify-content: center;
     align-items: center;

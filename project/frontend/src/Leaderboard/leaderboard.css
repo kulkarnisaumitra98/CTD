@@ -29,6 +29,15 @@
       align-items: center;
 
   }
+  .headhereleader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    border: 0px solid green;
+    margin-left: 8vw;
+    margin-top: -11vh;
+  }
   .heading {
     height: 8vh;
     background: rgba(0, 0, 0, 0.4);
@@ -93,7 +102,7 @@
       display: none;
   }
   .butleadbox{
-    margin-left: 41vw;
+    margin-left: 51.2vw;
   }
   .boxlead{
     display: flex;
@@ -101,10 +110,12 @@
     align-items: center;
     height: 5.5vh;
     border: 0px solid green;
+    margin-left: -3vh;
+
   }
   .but9{
     height: 5vh;
-    width: 10vw;
+    width: 11vw;
     display: flex;
     justify-content: center;
     align-items: center;

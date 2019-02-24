@@ -150,7 +150,8 @@ class Player2 extends Component {
 
                                     </div>
                                     <div className="inp1">
-                                        <button className="btn butpro" onClick={() => this.onClickHandler(false)}> NEXT </button>
+                                        <button className="btn butpros mt-5  " onClick={() => this.onClickHandler(true)}> NEXT </button>
+                                        <button className="btn butpros mt-5" onClick={() => this.onClickHandler(true)}> SKIP </button>
 
                                     </div>
                                 </div>

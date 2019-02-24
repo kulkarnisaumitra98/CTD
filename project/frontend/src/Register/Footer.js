@@ -3,8 +3,8 @@ import React from 'react'
 const Footer = () => {
 
     return (
-        <nav className="navigatelogin navbar navbar-expand-lg d-flex justify-content-center align-items-center">
-            <div className="footer">&copy; PICT IEEE COMPUTER SOCIETY</div>
+        <nav className="navig navbar navbar-expand-lg d-flex justify-content-center align-items-center">
+            <div className="foot">&copy; PICT IEEE COMPUTER SOCIETY</div>
         </nav>
     )
 }

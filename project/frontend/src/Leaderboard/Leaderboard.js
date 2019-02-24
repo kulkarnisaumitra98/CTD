@@ -58,7 +58,6 @@ class Leaderboard extends React.Component {
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <div className="leadertable">
                                     <table className="ltabledown table-striped">
                                         <tbody>

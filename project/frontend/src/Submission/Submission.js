@@ -20,8 +20,10 @@ class Submission extends React.Component {
                 sub:'',
                 subtime:'',
                 testCaseScore:0,
+                status:''
            }
-        ]
+        ],
+        promise:false
     }
 
     onClickHandler = (index) => {
@@ -37,7 +39,8 @@ class Submission extends React.Component {
                 //console.log(list)
 
                 this.setState({
-                    user: list
+                    user: list,
+                    promise:true
                 })
 
             }
@@ -46,6 +49,38 @@ class Submission extends React.Component {
 
 
     render() {
+        let text = []
+
+        if(this.state.promise) {
+            for (var i = 0; i < this.state.user.length; i++) {
+                if (this.state.user[i].status === 'A.C') {
+                    text[i] = (
+                        <div className="progress">
+                            <div
+                                className="progress-bar progress-bar-success"
+                                role="progressbar"
+                                aria-valuenow="40"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                style={{ width: this.state.user[i].testCaseScore + "%" }}
+                            >
+                            </div>
+                        </div>
+                    )
+                }
+
+                else {
+                    text[i] = (
+                    <div className="substat">
+                       {    this.state.user[i].status}
+                    </div>
+                    )
+                }
+            }
+        }
+        
+        
+
         return (
             <div>
                 <section className="container-fluid submiss">
@@ -76,19 +111,9 @@ class Submission extends React.Component {
                                                 <tr className="borderline" key={index}>
                                                     <td className="sr">{index + 1}</td>
                                                     <td className="timeSubd">{user.subtime}</td>
-                                                    <td className="prog">
-                                                        <div className="progress">
-                                                            <div 
-                                                                    className="progress-bar progress-bar-success"
-                                                                    role="progressbar"
-                                                                    aria-valuenow="40"
-                                                                    aria-valuemin="0"
-                                                                    aria-valuemax="100"
-                                                                    style={{ width: user.testCaseScore + "%" }}
-                                                                >
-                                                            </div>
-                                                            </div>
-                                                        </td>
+                                                    <td className="progsub">
+                                                        {text[index]}
+                                                    </td>
                                                     <td className="butty"><button className='btn butbut123' onClick={() => this.onClickHandler(index)} >VIEW</button></td>
 
                                                 </tr>

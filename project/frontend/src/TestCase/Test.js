@@ -81,7 +81,7 @@ class Test extends React.Component {
 
     componentDidMount() {
         const url = '/Coding/' + this.state.qid
-
+        console.log(this.props.history.location.state)
         axios.post(url, this.props.history.location.state, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
                 console.log(response)

@@ -151,24 +151,25 @@ class Username extends Component {
                                             </div>
                                             
                     <div className="inp1">
-                        Junior
                             <input
                             type='radio'
                             defaultChecked name='level'
                             value='junior'
-                        />
+                        /> <p style={{marginTop:"2vh",marginLeft:"0.7vw",fontSize:"2.3vh",fontWeight:"400",color:"white"}}>Junior</p>
 
-                       <p style={{marginLeft:"2vh"}}> Senior</p>
-                            <input
+                    <input
+                            style={{
+                                marginLeft:"2.5vw"
+                            }}
                             type='radio'
                             name='level'
                             value='senior'
-                        />
+                        /><p style={{marginTop:"2vh",marginLeft:"0.7vw",fontSize:"2.3vh",fontWeight:"400",color:"white"}}>Senior</p>
                     </div>
 
 
 
-                    <button onClick={this.postHandler}>Submit</button>
+                    <button className="btn butprosub"  onClick={this.postHandler}>SUBMIT</button>
 
                     </div>
             </div>

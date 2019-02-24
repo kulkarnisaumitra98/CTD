@@ -74,20 +74,40 @@ input:focus::-webkit-input-placeholder {
     outline:none;
 }
 
-.butpro{
-    height: 4vh;
-    width: 7vw;
+.butpros{
+    height: 7vh;
+    width: 9vw;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 500;
-    background-color: rgba(245, 245, 245, 0.363);
-    color: rgb(0, 0, 0);
+    background-color: rgb(1,105,105);
+    color:white;
     border: 1px solid black;
     box-shadow: 2px 1px 1px 1px black;
-    font-size:1.9vh;
+    font-size:2vh;
+    margin-right: 2vh;
+    margin-left:1vw;
 }
-
+.butprosub{
+    height: 7vh;
+    width: 9vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    background-color: rgb(1,105,105);
+    color:white;
+    border: 1px solid black;
+    box-shadow: 2px 1px 1px 1px black;
+    font-size:2vh;
+    margin-right: 2vh;
+    margin-top: 4vh;
+    margin-left:11vw;
+}
+.butpros:hover{
+    font-size: 2.1vh;
+}
 
 .titles{
     height: 10vh;

@@ -11,10 +11,10 @@ const NavTest = (props) => {
                 <div className="buttonbox">
                 </div>
                 <div className="buttonbox">
-                    <Link to="/Questions">  <button className="but1 btn">QUESTION HUB</button></Link>
+                    <Link to="/Questions">  <button className="but14 btn">QUESTION HUB</button></Link>
                 </div>
                 <div className="buttonbox">
-                    <Link to="/Leaderboard">  <button className="but1 btn">LEADERBOARD</button></Link>
+                    <Link to="/Leaderboard">  <button className="but14 btn">LEADERBOARD</button></Link>
                 </div>
                 <div className="buttonbox">
                     <LogOut />

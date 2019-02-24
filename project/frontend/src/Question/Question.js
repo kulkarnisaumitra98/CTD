@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import { css } from '@emotion/core';
 import { ClipLoader,BarLoader,PropagateLoader,PulseLoader} from 'react-spinners';
@@ -36,6 +36,7 @@ const override = css`
     display: block;
     margin: 0 auto;
     border-color: red;
+    margin-top:1vh;
 `;
 
 
@@ -59,13 +60,22 @@ const question = (props) => {
     const questionAccuracyBar = props.promise ? (
         <div className="progress">
                             <div
-                                className="progress-bar progress-bar-success"
+                                className="progress-bar progress-bar-success progs"
                                 role="progressbar"
                                 aria-valuenow="60"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
                                 style={{ width: questionAcc + "%" }}
                             >
+                            <p style={{
+                                color:"black",
+                                fontSize:"2vh",
+                                fontWeight:"600",
+                                marginTop:"1.8vh",
+                                marginLeft:"7vw"
+                            }}>
+                            {questionAcc}%
+                            </p>
                             </div>
                         </div>
     ) : (
@@ -73,8 +83,8 @@ const question = (props) => {
             css={override}
             sizeUnit={"vh"}
             width={100}
-            height={8}
-            color={'#0000FF'}
+            height={9}
+            color={'#008080'}
             sloading={true}
         />
     )
@@ -96,7 +106,7 @@ const question = (props) => {
                         <div className="attempts mt-1">
                             SUCCESSFUL SUBMISSIONS:
                             <br/>
-                            {questionSub}
+                            <p style={{marginTop:"1vh"}}>{questionSub}</p>
                         </div>        
                     <div className="accuracy row">
                     <div className="accutext">ACCURACY</div>
@@ -110,13 +120,9 @@ const question = (props) => {
                     </div>
                 </div>
                 </div>
-
-
             </div>
-
-
         </NavLink>
     )
 }
 
-export default question;
+export default withRouter(question);

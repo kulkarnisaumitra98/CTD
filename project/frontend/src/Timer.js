@@ -17,14 +17,24 @@ class Timer extends Component {
         let x = time
 
         const hour = Math.floor(x / 3600)
-        const min = Math.floor((x % 3600) / 60)
-        const sec = (x % 3600) % 60
-        const stringTime = "" +  hour + ':' + min + ':' + sec
+        let min = Math.floor((x % 3600) / 60)
+
+        if(min < 10) {
+            min = '0' + min    
+        }
+
+        let sec = (x % 3600) % 60
+
+        if(sec < 10) {
+            sec = '0' + sec
+        }
+        
+        const stringTime = "0" +  hour + ':' + min + ':' + sec
 
         x -= 1
 
         if(this.state.time <= 0) {
-            clearInterval(this.x)
+            clearInterval(this.interval)
 
             this.props.history.push('/Result')
         }

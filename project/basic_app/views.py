@@ -221,6 +221,7 @@ def questions(request, id=1):
                         cte_flag = True # and store it in strinf cerror to display on console
                         error = path + "/" + username + "/" + str("error{}.txt".format(id))
                         status = "CTE"
+                        subb.status = status
                         with open(error, 'r') as e:
                             cerror = e.read()
                             cerror1 = cerror.split('/')
@@ -231,26 +232,32 @@ def questions(request, id=1):
                     if tcOut[0] == 2 or tcOut[1] == 2 or tcOut[2] == 2 or tcOut[3] == 2 or tcOut[4] == 2:
                         tle_flag = True
                         status = "TLE"
+                        subb.status = status
 
                     if tcOut[0] == 4 or tcOut[1] == 4 or tcOut[2] == 4 or tcOut[3] == 4 or tcOut[4] == 4:
                         abt_flag = True
                         status = "W.A"
+                        subb.status = status
 
                     if tcOut[0] == 5 or tcOut[1] == 5 or tcOut[2] == 5 or tcOut[3] == 5 or tcOut[4] == 5:
                         abt_flag = True
                         status = "RTE"
+                        subb.status = status
 
                     if tcOut[0] == 6 or tcOut[1] == 6 or tcOut[2] == 6 or tcOut[3] == 6 or tcOut[4] == 6:
                         rte_flag = True
                         status = "RTE"   # strings to display on console
+                        subb.status = status
 
                     if tcOut[0] == 7 or tcOut[1] == 7 or tcOut[2] == 7 or tcOut[3] == 7 or tcOut[4] == 7:
                         rte_flag = True
                         status = "TLE"   # strings to display on console
+                        subb.status = status
 
                     if tcOut[0] == 8 or tcOut[1] == 8 or tcOut[2] == 8 or tcOut[3] == 8 or tcOut[4] == 8:
                         rte_flag = True
                         status = "RTE"  # strings to display on console
+                        subb.status
 
                     if UserQ.objects.filter(user=user.user, Qid=id):
                         if UserQ.objects.get(user=user.user, Qid=id).score <= user.score:
@@ -277,10 +284,12 @@ def questions(request, id=1):
 
                     if for_count == 5:
                         status = 'A.C'
+                        subb.status = status
 
                     else:
                         if not (tle_flag or rte_flag or abt_flag or cte_flag):
                             status = 'W.A'
+                            subb.status = status
                         for_count = 0
 
                     subb.testCaseScore = (for_count / 5) * 100  # testcase % completion
@@ -295,14 +304,18 @@ def questions(request, id=1):
                         if os.path.exists('{}/{}/question{}/output{}{}.txt'.format(path, username, id, u.attempt, (i+1))):
                             os.system('rm -rf {}/{}/question{}/output*'.format(path, username, id))
 
-                    dictt = {'e':cerror,
-                             't':nowTime(),
-                             'testlist':testlist,
-                             'status':status,
+                    dictt = {'e': cerror,
+                             't': nowTime(),
+                             'testlist': testlist,
+                             'status': status,
                              'score': user.score,
                              'qid': id}
 
                 return JsonResponse(dictt)
+            else:
+                ts = UserProfileInfo.objects.get(user=request.user).totalScore
+                body = Questions.objects.get(id=id).questions
+                return JsonResponse({'totalScore':ts, 'questions':body})
         else:
             return render(request, 'frontend/index.html')
     else:
@@ -430,26 +443,36 @@ def instructions(request):
         return HttpResponseRedirect(reverse('register'))
 
 
-def user_logout(request):
+def Result(request):
     if request.user.is_authenticated:
         if request.is_ajax():
-
             try:
                 user = UserProfileInfo.objects.get(user=request.user)
             except UserProfileInfo.DoesNotExist:
                 return register(request)
-            a = UserProfileInfo.objects.order_by("total")
+            a = UserProfileInfo.objects.order_by("total", "uacsubtime")
             b = a.reverse()
+            u = request.user.username
+            score = user.totalScore
             counter = 0
             for i in b:
                 counter += 1
-                if str(i.user) == str(request.user.username):
+                if str(i.user) == str(u):
                     break
 
-            dict = {'count': counter, 'name': request.user.username, 'score': user.totalScore}
+            users = [
+            ]
 
+            for user in b:
+                users.append({
+                    'username': user.user.username,
+                    'totalScore': user.totalScore,
+
+                    })
+            dicttt = {'counter': counter, 'name': u, 'score': score, "users": users}
+            print("logout")
             logout(request)
-            return JsonResponse(dict)
+            return JsonResponse(dicttt)
         else:
             return render(request, 'frontend/index.html')
     else:

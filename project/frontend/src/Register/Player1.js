@@ -144,7 +144,7 @@ class Player1 extends Component {
 
                                     </div>
                                     <div className="inp1">
-                                        <button className="btn butpro" onClick={this.onClickHandler}> NEXT </button>
+                                        <button className="btn butpros mt-5" onClick={this.onClickHandler}> NEXT </button>
 
                                     </div>
                                 </div>

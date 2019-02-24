@@ -5,7 +5,7 @@ import './submission.css'
 
 const Navbar = () => {
     return (
-        <div className="headhere">SUBMISSION
+        <div className="headheresub">SUBMISSION
                     <div className="row butbox">
                 <div className="box">
                     <NavLink to="/Questions"> <button className="btn but2">QUESTION HUB</button></NavLink>

@@ -28,6 +28,15 @@
       align-items: center;
 
   }
+  .headheresub{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    border: 0px solid green;
+    margin-left: 8vw;
+    margin-top: -11vh;
+  }
   .headingsub {
     height: 8vh;
     background: rgba(0, 0, 0, 0.4);
@@ -83,7 +92,7 @@
       display: none !important;
   }
   .butbox{
-    margin-left: 30.7vw;
+    margin-left: 38.5vw;
   }
   .box{
     display: flex;
@@ -135,7 +144,7 @@
   .timeSubd {
     border:0px solid black;
     width:20vw;
-    padding-left: 8.5vw;
+    padding-left: 9vw;
     font-size: 2.3vh;
     font-weight: 400;
   }
@@ -182,7 +191,7 @@
     box-shadow: 2px 2px black;
 
   }
-  .prog{
+  .progsub{
     border:0px solid black;
     width:20vw;
     padding-left: 5vw;
@@ -190,13 +199,16 @@
   }
   .progress{
     height: 3.7vh;
-    border:2px solid black;
+    border:0px solid black;
     border-radius: 51px;
 
   }
   .progress-bar-success{
     background-color: rgb(34, 180, 180);
   }
- 
+ .substat{
+   color:white;
+   padding-left: 5vw;
+ }
 
   /* borderline */

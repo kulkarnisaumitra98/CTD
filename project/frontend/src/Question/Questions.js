@@ -20,7 +20,7 @@ class Questions extends React.Component {
         const url = this.hostUrl + '/Questions/'
         axios.get(url,{headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
-                //console.log(response)
+                //console.log(response.data)
                 this.setState({
                     questions: [...response.data.data],
                     promise : true,
@@ -88,9 +88,9 @@ class Questions extends React.Component {
                             }
                         )} */}
                     </div>
-                </section >
+                </section>
                 <Footer />
-            </div >
+            </div>
         )
     }
 

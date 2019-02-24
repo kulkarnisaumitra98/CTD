@@ -13,7 +13,7 @@ class LogOut extends React.Component {
   render() {
     return (
       <div>
-        <Button color='danger' style={{width:"10vw"}} onClick={this.toggleModal.bind(this)}>LOG OUT</Button>
+        <Button color='danger' style={{width:"8vw"}} onClick={this.toggleModal.bind(this)}>LOG OUT</Button>
         <Modal isOpen={this.state.modalIsOpen}>
           <ModalHeader toggle={this.toggleModal.bind(this)}>LOG OUT</ModalHeader>
           <ModalBody>

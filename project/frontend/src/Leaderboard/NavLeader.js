@@ -6,7 +6,7 @@ import './leaderboard.css'
 
 const Navbar = () => {
     return (
-        <div className="headhere">LEADERBOARD
+        <div className="headhereleader">LEADERBOARD
                     <div className="row butleadbox">
                 <div className="boxlead">
                     <NavLink to="/Questions"><button className="btn but9">QUESTION HUB</button></NavLink>

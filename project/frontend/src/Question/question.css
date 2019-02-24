@@ -14,11 +14,12 @@
   align-items: center;
   font-size: 3vh;
   border: 0px solid green;
-  margin-left: 10vw;
+  margin-left: 8vw;
+  margin-top: -11vh;
 }
 
 .butquesbox{
-  margin-left: 41.5vw;
+  margin-left: 48.4vw;
 }
 .box{
   display: flex;
@@ -26,10 +27,11 @@
   align-items: center;
   height: 5.5vh;
   border: 0px solid green;
+  margin-left: 2vh;
 }
 .but2{
   height: 5vh;
-  width: 10vw;
+  width: 11vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,6 +125,7 @@
       border: 0px solid red;
       height: 4vh;
       width:100%;
+      font-weight: 550;
     }
     .flip-card-back {
       height: 30vh;
@@ -170,7 +173,13 @@
       transform: translateY(2px);
       
     }
-
+    .progs{
+      background-color:teal;
+    }
+    .progress{
+      height:2.7vh;
+      margin-top: 1vh;
+    }
 
 
     /* .flip-card:hover .flip-card-inner {

@@ -8,6 +8,8 @@
     border-radius:10px;
     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin-left: 30%;
+    padding-top: 2vh;
+
 }
 
 .cache{
@@ -42,7 +44,8 @@
     height: 20vh;
     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     width:16vw;
-    margin-left: 20vw;
+    padding-top: 2vh;
+    margin-left: 17vw;
 
 }
 
@@ -78,10 +81,122 @@
 
 
  
-    .table-row{
+.table-row{
         height:0.75vh;
         width:60vw;
         justify-content: center;
         align-items: center;
         text-align: center;
+}
+
+#resultboard{
+    height: 8vh;
+    width:62vw;
+    display: flex;
+    justify-content: center;
+    border: 0px solid green;
+    margin-left: 19vw;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    margin-top: 5vh;
+}
+#resultpage{
+    height: 8vh;
+    width: 100vw;
+    display:block;
+    justify-content: center;
+    border: 0px solid black;
+    background-color: rgba(0, 0, 0, 0.747);
+    color:rgba(255, 255, 255, 0.829);
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+.resulttable{
+    height:30vh;
+    width:68.5vw;
+    overflow-y: auto;
+    border-radius: 0px;
+    border:0px solid red;
+    margin-left: 14.2vw;
+}
+.ltabledownres {
+    background: rgba(0, 0, 0, 0.4);
+    width: 90%;
+    height: 30vh;
+    margin-left:5vw;
+    overflow: auto;
+    color: rgb(224, 224, 224);
+    border-radius:2vh;
+    font-size:2.4vh;
+    border-radius:0px;
+    border: 0px solid red;  
+}
+  .ltableupres{
+    width: 90%;
+    height: 5vh;
+    margin-left: 5vw;
+    color: rgba(185, 223, 223, 0.911);
+    border-top-right-radius:2vh;
+    border-top-left-radius:2vh;
+    background-color: rgba(0, 0, 0, 0.712);
+    font-size: 2.6vh;
+    border:0px solid black;
+  }
+
+  .resultrank{
+    width:20vw;
+    border:0px solid red;
+    padding-left: 8vw;
+    color:rgb(173, 216, 219);
+    font-size: 2.5vh;
+    font-weight: 600;
+    padding-bottom: 3vh;
+
+
+  }
+
+  .resultname{
+    width:20vw;
+    border: 0px solid red;
+    padding-left: 6vw;
+    color:rgb(173, 216, 219);
+    font-size: 2.5vh;
+    font-weight: 600;
+    padding-bottom: 3vh;
+  }
+  .totalscresult{
+    width:20vw;
+    border: 0px solid red;
+    padding-left: 8vw;
+    color:rgb(173, 216, 219);
+    font-size: 2.5vh;
+    font-weight: 600;
+    padding-bottom: 3vh;
+
+  }
+  .resultrankd{
+    height: 1vh;
+    width:20vw;
+    border: 0px solid red;
+    padding-left: 9vw;
+
+  }
+
+  .resultnamed{
+    height: 1vh;
+    width:20vw;
+    border: 0px solid red;
+    padding-left: 6vw;
+    
+  }
+  .totalscresultd{
+    height: 1vh;
+    width:20vw;
+    border: 0px solid red;
+    padding-left: 7vw;
+
+    }
+
+    .rowtable{
+        border:0px solid red;
     }

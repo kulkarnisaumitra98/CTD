@@ -18,33 +18,37 @@ class Body extends React.Component {
     state = {
         questiontext: null,
         questionTitle: null,
-        questionField: '',
+        questionField: '#include<bits/stdc++.h>\nusing namespace std;\n\nint main()\n{\n\tios_base::sync_with_stdio(0);\n\tcin.tie(0);\n\tcout.tie(0);\n\nreturn 0;\n}',
         success: false,
         lang: 'cpp',
         q_id: this.props.match.params.pk,
-        method:null   
+        method: null,
+        score:null 
     }
 
     componentDidMount() {
         //console.log('Coding Inside Did mount')
         if(this.props.location.state) {
             const submission = this.props.location.state.submission
-            console.log(submission)
+            //console.log(submission)
             this.setState({
                 questionField: submission,
                 method:1,
             })
         }
 
-        const url = this.hostUrl + '/api/question/' + this.props.match.params.pk
+        const url = this.hostUrl + '/Coding/' + this.props.match.params.pk
 
-        axios.get(url)
+        axios.get(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
             .then(res => {
+                //console.log(res.data)
                 if (res.status == 200) {
                     this.setState({
                         questiontext: res.data.questions,
                         questionTitle: res.data.questionTitle,
-                        success: true
+                        questionField:res.data.fastio,
+                        success: true,
+                        score:res.data.totalScore
                     })
                 }
             })
@@ -111,20 +115,32 @@ class Body extends React.Component {
         //console.log('Coding Inside render')
         const text = this.state.success ? (
             <div>
-                <p>{this.state.questionTitle}</p>
+                <p>{this.state.questiontext}</p>
             </div>
 
         ) : (
                 <p>Loading Page Please Wait !!!</p>
             )
+        
+        const score = this.state.success ? (
+            <div>
+                <p>{this.state.score}</p>
+            </div>
+
+        ) : (
+                <p></p>
+            )
+        
 
         return (
             <div>
                 <section className="container-fluid bigbody">
                     <div className="row BodY">
                         <div className="insideBody mt-3">
-                            <div className="scorekey">SCORE</div>
-                            <div className="scoreval "></div>
+                            <div className="scorekey mr-3">SCORE</div>
+                            <div className="scoreval ">
+                                {score}
+                            </div>
 
                             <div className="custom-file choose" >
                                 <input type="file" className="custom-file-input choosefile" id="fileToLoad" name="filename" onChange={this.loadFileAsText} />
@@ -173,7 +189,7 @@ class Body extends React.Component {
                             </div>
                             <div className="loadbox ">
                                 <button
-                                    className="submit"
+                                    className="btn submit"
                                     name="buffer"
                                     onClick={this.loadBuffer}>
                                     LOAD BUFFER
@@ -183,7 +199,7 @@ class Body extends React.Component {
                                 className="submitbox ">
                                 <button
                                     onClick={this.onClickHandler}
-                                    className="submit"
+                                    className=" btn submit"
                                     name="Submit">
                                     SUBMIT
                                     </button>

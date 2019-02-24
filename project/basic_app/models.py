@@ -39,6 +39,7 @@ class Submissions(models.Model):
     testCaseScore = models.IntegerField(default=0)
     que = models.ForeignKey(Questions, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(default='', max_length=10)
 
 
 class UserQ(models.Model):

@@ -12,11 +12,6 @@ class Editor extends React.Component {
       if(this.props.method === null) {
         return true;
       }
-    
-        if (nextProps.questionField === this.props.questionField) {
-          //console.log('Dont Update\nNextprops-> ', nextProps.questionField, '\nThisprops-> ', this.props.questionField)
-          return false;
-        }
 
         return true;
   }
@@ -44,6 +39,8 @@ class Editor extends React.Component {
 
   componentDidMount() {
     //console.log('Editor  Did mount')
+    const editor = this.ace
+    editor.editor.setValue(this.props.questionField,1)
     
   }
 
@@ -54,10 +51,10 @@ class Editor extends React.Component {
         mode="c_cpp"
         theme="twilight"
         onChange={this.onChange}
-        value='type here'
+        value='Type here'
         setReadOnly={false}
         id="editor"
-        style={{ height: '56vh', width: '53vw', fontSize: '2vh' }}
+        style={{ height: '56vh', width: '53vw', fontSize: '2vh',borderRadius:'5px' }}
         ref={instance => { this.ace = instance; }} // Let's put things into scope
       />
     );
