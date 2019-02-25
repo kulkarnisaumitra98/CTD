@@ -471,15 +471,16 @@ def leader(request):
                     temp = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
                     temprev = temp.reverse()
                     freezed = leaderResponse(temprev)
+                    return JsonResponse({'users': freezed, 'flag': True})
                 else:
                     print('freezed')
 
-                    return JsonResponse(freezed)
+                    return JsonResponse({'users': freezed, 'flag': True})
 
             a = UserProfileInfo.objects.order_by("totalScore", "uacsubtime")
             b = a.reverse()
 
-            return JsonResponse(leaderResponse(b))
+            return JsonResponse({'users': leaderResponse(b), 'flag': False})
         else:
             return render(request, 'frontend/index.html')
     else:

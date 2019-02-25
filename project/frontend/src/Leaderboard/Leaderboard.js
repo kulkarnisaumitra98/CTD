@@ -3,7 +3,7 @@ import Footer from '../CodingPage/Footer';
 import axios from 'axios'
 import './leaderboard.css'
 import Cell from './cell'
-
+import Lock from '../../../frontend/static/frontend/lock.png'
 class Leaderboard extends React.Component {
 
     constructor(props) {
@@ -16,29 +16,37 @@ class Leaderboard extends React.Component {
         users: [
         ],
         promise: false,
+        flag:false
     }
 
     componentDidMount() {
         const url = this.hostUrl + '/Leaderboard/'
         axios.get(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(
             response => {
-                
+                console.log(response)
                 this.setState({
-                    users: [...response.data.users],
+                    users: [...response.data.users.users],
                     promise: true,
+                    flag: response.data.flag
                 })
             }
         )
     }
 
     render() {
+        const freezeSrc = this.state.flag ? (
+            <img src={Lock} height="40px" width="40px"/>
+        ) : (
+            ""
+        )
         return (
             <div>
                 <section className="container-fluid leader1">
                     <div className="a">
                         <div className="Leaderbox">
                             <div className="heading text-center">
-                                <h3>LEADERBOARD</h3>
+                                <h3>LEADERBOARD
+                                    {freezeSrc}</h3>
                             </div>
                         </div>
 
