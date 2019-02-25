@@ -108,7 +108,7 @@ class Leaderboard extends React.Component {
                                                             acTime={user.acTime} 
                                                             score={user.questionScores[5]}/>
                                                     </td>
-
+                                                    <td className="totalscd">{user.totalScore}</td>
                                                 </tr>
                                             )
                                             )

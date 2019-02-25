@@ -1,0 +1,52 @@
+TABLE GAME
+
+Shivam's Casino is running fine. All thanks to people who did not use Wheel Of Fortune.[-.-] Very few people tested their luck on wheel of fortune. Fortunately for Shivam, this saved a lot of money. So he decided to install a new game, called 'Table Game' which is played on a table.
+
+    Due to heavy cash prize on this game, and regret for not playing wheel of fortune, a lot of
+people came to Shivam's casino to play 'Table Game'.
+
+Because of heavy demand of Table Game, Shivam asked Akash to help him out.
+
+    Akash implemented following strategy :
+            1. A player plays 'Table Game' for exactly 'T' units of time.
+            2. Every table can serve at most 'K' players at a time.
+            3. No player should go un-attended, and should be served immediately.
+            4. Suppose a player starts playing at x’th second then at (x+T)’th second he’ll be leaving the table. At (x+T)’th second he/she won’t be served by the table.
+
+ But with 'N' number of players coming to casino to play at N(i) time (1<=i<=N),  Akash might need more than 1 table for his strategy to be a success.But Shivam wants to minimize his investment, and hence wants less number of tables
+Each new table that will be added also can serve at most ‘K’ players at a time.
+
+Print minimum number of tables required .
+
+Input Format :
+    1. First line of input contains 't’', t test cases follow.
+    2. Next line contains 3 space separated integers N K T.
+    3. Next N lines contain time N(i) denoting the time at which i'th player comes to play 'Table Game'.
+
+Output Format :
+For each test case
+    1.Print a single integer denoting minimum number of tables required on new line
+
+Constraints :
+
+1<= t <=10
+1 <= N <= 100000
+1 <= K <= 100000
+2 <= T <= 1005
+
+
+Sample Input
+
+2
+2 1 1000
+0
+1000
+3 2 1000
+1000
+1010
+1999
+
+Output
+1
+2
+

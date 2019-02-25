@@ -1,0 +1,30 @@
+In a class there are N*N benches arranged in a matrix with row no. starting from 1 to N and Column from 1 to N.
+Akash wants to Play PubG during Lectures,but also he is scared that if Professor catches him using Mobile during lecture,then he will get suspended. Also Akash knows that Professor checks student for Mobile Phone only if student at position (i,j) is not checked before. And also Akash Knows that if Professor checks Student at position (i,j) then this Student will also give information about student to his right i.e. (i,j+1) and behind him i.e. (i+1,j) also it is known that Professor checks Student at (i,j) only if Student has only two neighbour unchecked i.e. (i,j+1) and (i+1,j)
+
+Akash asks you to find no. of Ways he can select a bench i.e. he will never get caught
+
+Input:-
+	First Line is T denoting no. of test cases
+	First line of each test case contains a single integer denoting N (dimension of Class)
+	
+Output:-
+	no. of Ways to select a Bench
+	
+Constraints:-
+	1<=T<=100
+	1<=N<=1000
+	
+Sample Input:-
+	2
+	1
+	2
+
+Sample Output:-
+	1
+	1
+	
+Explanation:-
+	for first test case there is only one bench and it does not have any neighbour i.e (i+1,j) and (i,j+1)
+	so there is only one way i.e. selecting bench (1,1)
+	
+	for second test case Professor checks bench (1,1) and student at (1,1) will give information about (1,2) and (2,1) so (1,1),(1,2),(2,1) are checked ,remaining is (2,2) as (2,2) has no neighbours i.e. (i+1,j) and (i,j+1) and (2,2)is not checked hence there is only one way i.e. selecting (2,2).

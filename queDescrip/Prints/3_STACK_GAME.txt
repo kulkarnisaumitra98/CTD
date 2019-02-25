@@ -1,0 +1,40 @@
+Two mathematicians Darshan and Shubham are competing with each other.
+To see who is superior amongst them they are planing to play a game called "The Stack Game".
+The Stack Game is a simple game played with numbered blocks and a stack.
+Shivang gives them N blocks having numbers printed on them.
+Each player plays alternatively and adds a block to the top of the stack.
+ 
+Rules of the game are very simple:
+
+Initially the stack is empty.
+If no blocks are in the stack, the player can select any block from the N given blocks and add it to the stack.
+A player can add a block to the stack only if it is a factor of the block on the top.
+
+The one who is not able to make any move loses the game.
+Once a block is used it can't be used again.
+
+Darshan starts the game.
+
+Input Format:
+
+First line contains a single integer denoting the number of test cases.
+First line of each test case contains a single integer N denoting the number of blocks
+Second line of each test case contains N space separated integers denoting the numbers written on blocks.
+
+Output Format:
+
+For each test, print "Darshan" if Darshan wins, "Shubham" if Shubham wins (without quotes) on new line.
+
+Sample Input:
+
+2
+3
+3 5 7
+2
+2 2
+
+Sample Output:
+
+Darshan
+Shubham
+

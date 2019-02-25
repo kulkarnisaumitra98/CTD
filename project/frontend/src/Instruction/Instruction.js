@@ -2,13 +2,19 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import './instruction.css'
 import Footer from '../CodingPage/Footer';
+import NCC from '../../../frontend/static/frontend/NCC.png'
+import Ctd from '../../../frontend/static/frontend/ctdlogowhite.png'
 
 class Instruction extends React.Component {
 
     render() {
         return (
             <div>
-                <div className="navig navbar navbar-expand-lg"></div>
+                <div className="navig navbar navbar-expand-lg">
+                <img src={NCC} height="80px" width="90px" style={{marginLeft:"-1.5vw"}}/>
+                <img src={Ctd} height="40px" width="60px" style={{marginLeft:"88vw"}}/>
+
+                </div>
                 <div className="centerbox container-fluid">
                     <div className="titles">INSTRUCTIONS</div>
                     <div className="content">

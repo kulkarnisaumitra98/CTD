@@ -1,0 +1,28 @@
+Tejas has invited Sagar and Akash for a Dinner Party.
+Tejas has prepared 'N' types of dishes.Also he has prepared i'th dish A[i] times (1<=i<=N).
+Tejas does not want to serve different dishes to Akash and Sagar. Suddenly light in Tejas' kitchen get dimmed.
+So he is not able to recognize the dish by its type, but he can count number of dishes.
+Help Tejas to pick minimum number of dishes, so that he can serve both Sagar and Akash the same dishes with certainty.
+
+Input Format :
+	1.First line contains 'T', describing number of test cases.
+	2.Next line contains 'N', denoting number of types of dishes.
+	3.Next line contains an array 'A'. A[i] denotes number of dishes of i'th type.
+
+Output Format :
+	1. For each test case print a single integer denoting minimum number of dishes Tejas needs to pick,
+         in order to serve same type of dish to both Sagar and Akash.
+
+Constraint :
+	1<=T<=100
+	1<=N<=1000
+	2<=A[i]<=1000000
+
+Sample Input :
+1
+1
+2	
+
+Sample Output ;
+2
+

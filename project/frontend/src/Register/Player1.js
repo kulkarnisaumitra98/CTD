@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 // import { Link } from 'react-router-dom';
 import './player.css'
 import Footer from './Footer';
-import './NCC.png'
 import styled from 'styled-components'
+import NCC from './NCC.png'
+import Ctd from '../../../frontend/static/frontend/ctdlogowhite.png'
 
 const Player = styled.div`
     height:70vh;
@@ -46,8 +47,16 @@ class Player1 extends Component {
 
         let phoneno = /^\d{10}$/;
 
+        let regemail = /[@]/;
+
         if (!this.state.phone.match(phoneno)) {
             alert('Enter valid phone number')
+
+            return false;
+        }
+
+        if(! this.state.email.match(regemail)) {
+            alert('Enter valid email')
 
             return false;
         }
@@ -57,7 +66,7 @@ class Player1 extends Component {
 
     onClickHandler = () => {
 
-        if (true) {
+        if (this.validateForm()) {
 
             const params = this.state
 
@@ -69,7 +78,11 @@ class Player1 extends Component {
     render() {
         return (
             <div >
-                <div className="navigatelogin navbar navbar-expand-lg"></div>
+                <div className="navigatelogin navbar navbar-expand-lg">
+                <img src={NCC} height="40px" width="50px"/>
+                <img src={Ctd} height="40px" width="50px" style={{marginLeft:"90vw"}}/>
+
+                </div>
                 <div className="container-fluid centerboxlogin">
                    <div className="row">
                     <div className="playerbox">

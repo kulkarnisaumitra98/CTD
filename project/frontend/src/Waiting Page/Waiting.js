@@ -49,7 +49,7 @@ class waiting extends React.Component {
             <div >
                 <Bg_text>
                     <h2>PLEASE WAIT</h2>
-                    <h1>While You are being HACKED</h1>
+                    <h1>While You are being CONNECTED</h1>
                     <h5>Thank You for your Patience</h5>
                 </Bg_text>
             </div>

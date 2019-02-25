@@ -57,12 +57,13 @@ class Result extends React.Component {
 
     render() {
         return (
+
             <div>
+
                 <Centerbox >
                     <div className="teamname123">
-                        <h1>TEAM NAME</h1>
-
-                       <h2> {this.state.name}</h2>
+                    <h1> {this.state.name}</h1>
+                     
                     </div>
                 <div className="cache">
                     <div className="row ">

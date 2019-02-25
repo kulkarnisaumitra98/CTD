@@ -8,6 +8,15 @@
     align-items: center;
     
 }
+.headtest{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    border: 0px solid green;
+    margin-left: 8vw;
+     margin-top: -11vh;
+}
 .Console{
     height:64vh;
     width:30vw;
@@ -100,15 +109,13 @@
     box-shadow: inset 1px 1px 5px 0px black;
 }
 .bigtestbox{
-    margin-left: 25.25vw;
+    margin-left: 30.25vw;
 }
 .buttonbox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ 
     height: 5.5vh;
     border: 0px solid green;
-    margin-left: 3vw;
+    margin-left: 2vw;
 }
 .buttest{
     margin-left:3vw; 
@@ -126,7 +133,7 @@
 }
 .but14{
     height: 5vh;
-  width: 10vw;
+  width: 11vw;
   display: flex;
   justify-content: center;
   align-items: center;

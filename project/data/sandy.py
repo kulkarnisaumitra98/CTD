@@ -25,8 +25,8 @@ def sandy_func(exec_file, in_file_fd, user_out_fd, time, mem):
         'stdin': in_file_fd,  # input to targeted program
         'stdout': user_out_fd,  # output from targeted program
         'stderr': sys.stderr,  # error from targeted program
-        'quota': dict(wallclock=5000,  # 30 sec
-                      cpu=1500,  # 2 sec
+        'quota': dict(wallclock=2000,  # 30 sec
+                      cpu=1000,  # 2 sec
                       memory=int(mem),  # 256 MB
                       disk=104857600)
     }  # 1 MB

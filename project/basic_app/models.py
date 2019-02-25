@@ -18,7 +18,8 @@ class UserProfileInfo(models.Model):
     score = models.IntegerField(default=0)     # temporary score of a question
     totalScore = models.IntegerField(default=0)     # Total question score
     total = models.IntegerField(default=0)          # percentage score
-
+    email1 = models.EmailField(default='')
+    email2 = models.EmailField(default='')
     phone1 = models.CharField(max_length=10)
     phone2 = models.CharField(max_length=10)
     name1 = models.CharField(max_length=100)
@@ -28,7 +29,6 @@ class UserProfileInfo(models.Model):
     flag = models.BooleanField(default=False)
     uacsubtime = models.CharField(default=0, max_length=10)
     latestAcQid = models.IntegerField(default=1)
-
 
     def __str__(self):
 

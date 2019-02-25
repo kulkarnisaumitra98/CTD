@@ -58,7 +58,7 @@ const question = (props) => {
     const questionSub = props.promise ? props.question.submission : loader
     const questionTitle = props.promise ? props.question.questionTitle : loader
     const questionAccuracyBar = props.promise ? (
-        <div className="progress">
+        <div className="progress ">
                             <div
                                 className="progress-bar progress-bar-success progs"
                                 role="progressbar"
@@ -67,15 +67,16 @@ const question = (props) => {
                                 aria-valuemax="100"
                                 style={{ width: questionAcc + "%" }}
                             >
-                            <p style={{
+                            <div style={{
                                 color:"black",
                                 fontSize:"2vh",
                                 fontWeight:"600",
-                                marginTop:"1.8vh",
-                                marginLeft:"7vw"
+                                marginTop:"0vh",
+                                
+                                
                             }}>
                             {questionAcc}%
-                            </p>
+                            </div>
                             </div>
                         </div>
     ) : (
@@ -106,7 +107,7 @@ const question = (props) => {
                         <div className="attempts mt-1">
                             SUCCESSFUL SUBMISSIONS:
                             <br/>
-                            <p style={{marginTop:"1vh"}}>{questionSub}</p>
+                            <div style={{marginTop:"1vh"}}>{questionSub}</div>
                         </div>        
                     <div className="accuracy row">
                     <div className="accutext">ACCURACY</div>

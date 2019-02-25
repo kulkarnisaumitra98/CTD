@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './player.css'
 import Footer from './Footer';
 import axios from 'axios'
-import './NCC.png'
+import NCC from './NCC.png'
+import Ctd from '../../../frontend/static/frontend/ctdlogowhite.png'
 import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 
@@ -29,9 +30,11 @@ class Username extends Component {
         name2: this.props.history.location.state.name,
         phone1: this.props.history.location.state.player1.phone,
         phone2: this.props.history.location.state.phone,
+        email1: this.props.history.location.state.player1.email,
+        email2:  this.props.history.location.state.email,
         username: '',
         password: '',
-        level: 'junior'
+        level: 'junior',
     }
 
     setInput = (event) => {
@@ -96,9 +99,15 @@ class Username extends Component {
 
 
     render() {
+    
         return (
             <div>
-                <div className="navigatelogin  navbar navbar-expand-lg"></div>
+                <div className="navigatelogin  navbar navbar-expand-lg">
+                <img src={NCC} height="40px" width="50px"/>
+                <img src={Ctd} height="40px" width="50px" style={{marginLeft:"90vw"}}/>
+
+
+                </div>
                     <div className="container-fluid centerboxlogin">
                          <div className="row">
                             <div className="playerbox">
@@ -126,7 +135,6 @@ class Username extends Component {
                                                         autoComplete="off"
 
                                                     />
-
                                                      </div>
                                                 
                                         <div className="inp1">

@@ -70,27 +70,47 @@ def startTimer(request):
     else:
         adminpassword = '1'
         _password = request.POST.get('pass1')   # get admin password
+        _time = request.POST.get('time')
+        global _flag
         if _password == adminpassword:
-            global _flag
+            if _flag:
+                users = UserProfileInfo.objects.all()
+                for user in users:
+                    if user.uacsubtime == '0':
+                        continue
+                    print(user.uacsubtime)
+                    h = int(user.uacsubtime.split(':')[0])
+                    m = int(user.uacsubtime.split(':')[1])
+                    s = int(user.uacsubtime.split(':')[2])
+
+                    TIME = h*60*60+m*60+s
+                    TIME += int(_time)
+                    hour = TIME // (60 * 60)
+                    a = TIME % (60 * 60)
+                    if a < 60:
+                        sec = a
+                        min = 0
+                    else:
+                        min = a // 60
+                        sec = a % 60
+
+                    user.uacsubtime = '{}:{}:{}'.format(hour, min, sec)  # stores time of submission
+                    user.save()
+
             _flag = True    # flag True when you start the timer(used so he cannot go to register before waitin page# )
             now1 = datetime.datetime.now()  # cuurent time       ( by putting the url )
             min1 = now1.minute + 1  # 1 signifies time after hitting timer url
             hour1 = now1.hour
             time1 = str(hour1) + ':' + str(min1)    # makes the string of current time + 1 min
-
             time = now1.second+now1.minute * 60 + now1.hour * 60 * 60
             global endtime
             global starttime
             starttime = time1
-            endtime = time + 7200  # 7200 defines our event time
+            endtime = time + int(_time)  # 7200 defines our event time
 
             return HttpResponse('<p>Good to go</p>')
         else:
             return HttpResponse("Invalid login details supplied.")
-
-
-def result(request):
-    return render(request, 'frontend/index.html', {})
 
 
 def waiting(request):
@@ -505,6 +525,8 @@ def register(request):
 
                 username = Postobject['username']
                 password = Postobject['password']
+                email1 = Postobject['email1']
+                email2 = Postobject['email2']
                 name1 = Postobject['name1']
                 name2 = Postobject['name2']
                 phone1 = Postobject['phone1']
@@ -517,6 +539,8 @@ def register(request):
                 b.name2 = name2
                 b.phone1 = phone1
                 b.phone2 = phone2
+                b.email1 = email1
+                b.email2 = email2
                 b.level = level
                 login(request, b.user)
                 b.save()

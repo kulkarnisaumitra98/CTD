@@ -21,6 +21,6 @@ urlpatterns =[
     path('Testcase/<int:id>', views.questions),
     path('Result/', views.Result, name='Result'),
     path('instruction/', views.instructions, name='instructions'),
-    path('', views.waiting),
+    path('', views.waiting, name='waiting'),
 
 ]

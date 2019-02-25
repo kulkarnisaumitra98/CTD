@@ -28,6 +28,7 @@ margin-top:2.4vh;
 `;
 
 class Nav extends React.Component {
+  
     state = {
         time:null
     }

@@ -1,0 +1,30 @@
+A small mailbox manufacturer is interested in how many fire-crackers his new mailbox prototype can withstand without exploding and has hired you to help him. He will provide you with 'K' identical mailbox prototypes each fitting up to 'M' crackers. However, he is not sure of how many firecrackers he needs to provide you with in order for you to be able to solvehis problem. What is the minimum number of crackers that you should ask him to provide you with?
+
+You may assume the following:
+1. If a mailbox can withstand x fire-crackers, it can also withstand x-1 fire-crackers.
+2. Upon an explosion, a mailbox is either totally destroyed (blown up) or unharmed, which means that it can be reused in another test explosion.
+
+Input Format :
+The input starts with a single integer N indicating the number of test cases to follow.
+Each test case is described by a line containing two integers: 'K' and m, separated by a single space.
+
+Output Format :
+For each test case print one line with a single integer indicating the minimum number of fire-crackers that is needed
+
+Sample Input :
+4
+1 10
+1 100
+3 73
+5 100
+
+Sample Output :
+55
+5050
+382
+495
+
+Constraints :
+1<=N<=100
+1<=K<=100
+1<=M<=100

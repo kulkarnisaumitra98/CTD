@@ -130,7 +130,7 @@
   th,
   td {
     height: 11vh;
-    border: 1px solid white
+    border: 0px solid white
   }
   .teamrank {
     font-size: 2.6vh;
@@ -144,15 +144,20 @@
   .teamame {
     font-size: 2.6vh;
     width: 18vw;
+    padding-left: 2.6vw;
+
  }
-  .ques {
+  .quest{
     font-size: 2.6vh;
     width: 8vw;
+    padding-left: 1.9vw;
 
   }
   .totalsc {
     font-size: 2.6vh;
     width: 10vw;
+    padding-left: 1.9vw;
+
   }
   .teamrankd {
     justify-content: center;
@@ -163,7 +168,7 @@
   }
   .teamamed {
     width: 17vw;
-    padding-left: 1vw;
+    padding-left: 2.6vw;
 
  }
   .questd {
@@ -173,7 +178,7 @@
   }
   .totalscd{
     width: 10vw;
-    padding-left: 1vw;
+    padding-left: 2.3vw;
 
   }
  
@@ -183,13 +188,16 @@
   }
  
 .Acscore{
-  height: 9.5vh;
-  padding-top: 2vw;
-  border: 1px solid green;
+  height: 7.5vh;
+  padding-top: 2.3vw;
+  padding-left: 1.5vw;
+  border: 0px solid green;
 }
 
 .Actime{
-  height: 1.5vh;
+  height: 3vh;
   font-size: 1.7vh;
-  border: 1px solid green;
+  padding-left: 1.2vw;
+
+  border: 0px solid green;
 }
