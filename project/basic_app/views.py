@@ -75,6 +75,7 @@ def startTimer(request):
         if _password == adminpassword:
             if _flag:
                 users = UserProfileInfo.objects.all()
+                subs = Submissions.objects.all()
                 for user in users:
                     if user.uacsubtime == '0':
                         continue
@@ -95,7 +96,31 @@ def startTimer(request):
                         sec = a % 60
 
                     user.uacsubtime = '{}:{}:{}'.format(hour, min, sec)  # stores time of submission
+
                     user.save()
+
+                for sub in subs:
+                    if sub.subtime == '':
+                        continue
+
+                    h = int(sub.subtime.split(':')[0])
+                    m = int(sub.subtime.split(':')[1])
+                    s = int(sub.subtime.split(':')[2])
+
+                    TIME = h * 60 * 60 + m * 60 + s
+                    TIME += int(_time)
+                    hour = TIME // (60 * 60)
+                    a = TIME % (60 * 60)
+                    if a < 60:
+                        sec = a
+                        min = 0
+                    else:
+                        min = a // 60
+                        sec = a % 60
+
+                    sub.subtime = '{}:{}:{}'.format(hour, min, sec)  # stores time of submission
+
+                    sub.save()
 
             _flag = True    # flag True when you start the timer(used so he cannot go to register before waitin page# )
             now1 = datetime.datetime.now()  # cuurent time       ( by putting the url )
@@ -365,14 +390,22 @@ def question_panel(request):
             user_sub_count = [0] * 6        # number of users who have atleast one submissions
             percentage_accuracy = [0] * 6   # stores accuracy of each question
 
-            for user in all_user:
-                for i in range(6):
-                    if UserQ.objects.filter(Qid=i+1, user=user.user):
-                        user_sub_count[i] += 1
-                        if UserQ.objects.get(Qid=i+1, user=user.user).score == 100:
-                            all_question[i].submission += 1
-                            all_question[i].save()
-                            accuracy_count[i] += 1
+            # for user in all_user:
+            #     for i in range(6):
+            #         if UserQ.objects.filter(Qid=i+1, user=user.user):
+            #             user_sub_count[i] += 1
+            #             if UserQ.objects.get(Qid=i+1, user=user.user).score == 100:
+            #                 all_question[i].submission += 1
+            #                 all_question[i].save()
+            #                 accuracy_count[i] += 1
+
+            for i in range(6):
+                if UserQ.objects.filter(Qid=i+1):
+                    user_sub_count[i] = len(UserQ.objects.filter(Qid=i+1))
+                    all_question[i].all_submissions = user_sub_count[i]
+                    accuracy_count[i] = len(UserQ.objects.filter(Qid=i + 1, score=100))
+                    all_question[i].submission = accuracy_count[i]
+                    all_question[i].save()
 
             for i in range(0, 6):
                 try:
@@ -627,13 +660,13 @@ def elogin(request):    # emergency login
         if user is not None and _password is adminpassword:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('question_panel'))
+                return HttpResponseRedirect(reverse('QuestionHub'))
 
         else:
             return HttpResponse("Invalid login details supplied.")
 
     else:
-        return render(request, 'basic_app/elogin.html', {})
+        return render(request, 'frontend/elogin.html')
 
 
 # COMMENTS COURTESY OF SAUMITRA KULKARNI :P
